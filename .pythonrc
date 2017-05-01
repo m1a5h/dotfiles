@@ -1,1 +1,14 @@
-linux-config/.pythonrc
+# startup file for python interpreter
+
+# enable syntax completion
+try:
+    import readline
+except ImportError:
+    print("Module readline not available.")
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+
+# include libraries & modules in ~/lib/python
+import sys
+sys.path.append('/home/smash/lib/python')

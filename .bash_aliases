@@ -1,5 +1,5 @@
 alias emacs='emacs -nw' # keep emacs in the terminal window
-alias drjava='java -jar /home/smash/bin/drjava-stable-20130901-r5756.jar' # if it's on
+alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
 alias dmesg='dmesg | tail --follow' # see what's happening
 alias rX='sudo pkill X' # restart X
@@ -72,9 +72,8 @@ alias sbb='sudo bleachbit -c $(cat ~/.bleachbit)'
 
 # virtual ubuntu webserver
 alias startog='VBoxHeadless -s together &'
-alias tog='tmux a -t together || tmux new -s together ssh -p 2468 together'
+alias tog='tmux a -t together || tmux new -s together ssh together'
 
 # virtual centos server
 alias stap='VBoxHeadless -s apollo &'
-alias apollo='tmux a -t apollo || tmux new -s apollo ssh -p 2468 apollo'
-
+alias apo='tmux a -t apollo || tmux new -s apollo ssh apollo'

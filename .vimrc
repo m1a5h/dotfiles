@@ -1,102 +1,88 @@
-"" My vimrc file
+" My vim configuration file
 
-" choose no compatibility with legacy vi
+" turn off vi compatibility
 set nocompatible
 
-" allow use of system clipboard
-set clipboard=unnamed
-
-" syntax is good
-let python_highlight_all=1
-syntax enable on
-
-" show where i am
-set cursorline
-
-" utf-8 encoding is good
-set encoding=utf-8
-
-" spellchecking in English
-set spelllang=en_gb
-
-" display incomplete commands
-set showcmd
+" don't specify filetypes for the Vundle bit
+filetype off
 
 " set runtime path to include Vundle and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" could pass another path to install plugins - best not to though
+" call vundle#begin('~/some/other/path') " alternative path
 
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
+" let Vundle mamage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-" let Vundle manage Vundle, required
-" Plugin 'gmarik/Vundle.vim'
+" remove distraction from writing
+Plugin 'junegunn/goyo.vim'
 
-" Vundle plugins here
-" Plugin 'tmhedberg/SimpylFold'
-" Bundle 'Valloric/YouCompleteMe'
-" Plugin 'nvie/vim-flake8'
-" Plugin 'jnurmine/Zenburn'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" use vim and pandoc
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 
-" end of Vundle plugins
-" call vundle#end()
+" help with JavaScript syntax
+Plugin 'jelera/vim-javascript-syntax'
 
-" load filetype plugins + indentation
-filetype plugin indent on
+" more useful hightlighting and intendation
+Plugin 'pangloss/vim-javascript'
 
-" get a better colorscheme
-colorscheme murphy
+" more indentation help
+Plugin 'nathanaelkane/vim-indent-guides'
 
-"" Whitespace
+" auto close brackets, quotes etc
+Plugin 'Raimondi/delimitMate'
 
-" don't wrap lines
-set nowrap
+" autocomplete things well
+Plugin 'Valloric/YouCompleteMe'
 
-" a tab is 4 spaces
-set tabstop=4 shiftwidth=4 softtabstop=4
+" parsing JavaScript
+Plugin 'marijnh/tern_for_vim'
 
-" use spaces, not tabs
-" set expandtab
+" all plugins must be added before this line
+call vundle#end()
+filetype plugin indent on " can specify filetypes again
 
-" backspace through everything in insert mode
-set backspace=indent,eol,start
+" syntax highlighting
+syntax on
 
-"" Searching
+" set colouring properly
+set t_Co=256
+set background=dark
+colorscheme distinguished
 
-" highlight matches
-set hlsearch
+" use "jj" or "kk" rather than "Esc"
+inoremap jj <Esc>
+inoremap kk <Esc>
 
-" increment searching
+" make positon (line, column) visible at bottom and side
+set ruler
+set number relativenumber
+
+" make all types of tabs 4 spaces
+set sts=4
+set ts=4
+set sw=4
+
+" ignore case when searching, or not smartly
+set ignorecase smartcase
+
+" increment search by pressing <Enter>
 set incsearch
 
-" searches are case insensitive...
-set ignorecase
+" highlight searches when found
+set hlsearch
 
-" ... unless they cotain at least one capital letter
-set smartcase
+" line wrappinig
+set wrap
 
-" PEP8 indentation
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
+" make tile of console name of file
+set title
 
-" webdev indentation
-au BufNewFile,BufRead *.js,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
+" check spelling with F6
+map <F6> :setlocal spell! spelllang=en_gb<CR>
 
-" flag unneeded whitespace
-highlight BadWhiteSpace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*c,*.h match BadWhiteSpace /\s\+$/
-
-" YouCompleteMe customization
-let g:uycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionsElseDeclaration<CR>
+" autoclose HTML tags
+" iabbrev <// </<C-X><C-O>
+au Filetype html,xml,xsl source ~/.vim/closetag.vim

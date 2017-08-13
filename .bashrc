@@ -120,24 +120,24 @@ source ~/.git-prompt.sh
 alias gitt='export PS1="[\033[01;34m]\W\$(__git_ps1)$ [\033[00m] "'
 
 PATH=$PATH:$HOME/racket/bin # Add RVM to PATH for scripting
-source /home/smash/perl5/perlbrew/etc/bashrc
-export PYTHONPATH="/home/smash/bin/wxPython-src-2.9.4.0/wxPython"
-export LD_LIBRARY_PATH="/home/smash/bin/wxPython-src-2.9.4.0/bld/lib"
+# source ~/perl5/perlbrew/etc/bashrc
+export PYTHONPATH="~/bin/wxPython-src-2.9.4.0/wxPython"
+export LD_LIBRARY_PATH="~/bin/wxPython-src-2.9.4.0/bld/lib"
 export PYTHONSTARTUP=~/.pythonrc
 
 # The next line updates PATH for the Google Cloud SDK.
-# source /home/smash/learning/google-cloud-sdk/path.bash.inc
+# source ~/learning/google-cloud-sdk/path.bash.inc
 
 # The next line enables bash completion for gcloud.
-# source /home/smash/learning/google-cloud-sdk/completion.bash.inc
+# source ~/learning/google-cloud-sdk/completion.bash.inc
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-# PERL_MB_OPT="--install_base \"/home/smash/perl5\""; export PERL_MB_OPT;
-# PERL_MM_OPT="INSTALL_BASE=/home/smash/perl5"; export PERL_MM_OPT;
+# PERL_MB_OPT="--install_base \"~/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;
 # set +x
 # exec 2>&3 3>&-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/smash/.sdkman"
-[[ -s "/home/smash/.sdkman/bin/sdkman-init.sh" ]] && source "/home/smash/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="~/.sdkman"
+[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"

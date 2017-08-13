@@ -11,4 +11,4 @@ else:
 
 # include libraries & modules in ~/lib/python
 import sys
-sys.path.append('/home/smash/lib/python')
+sys.path.append('~/lib/python')

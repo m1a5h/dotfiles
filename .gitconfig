@@ -1,3 +1,5 @@
 [user]
 	name = smash
 	email = matt137pickman@googlemail.com
+[push]
+	default = current

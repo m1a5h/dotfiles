@@ -86,3 +86,9 @@ map <F6> :setlocal spell! spelllang=en_gb<CR>
 " autoclose HTML tags
 " iabbrev <// </<C-X><C-O>
 au Filetype html,xml,xsl source ~/.vim/closetag.vim
+
+" LaTeX (rubber) macro for compiling
+nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
+
+" View PDF macro;  '%r' is current file's root (base) name
+nnoremap <leader>v :!evince %:r.pdf &<CR><CR>

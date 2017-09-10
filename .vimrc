@@ -62,7 +62,7 @@ syntax on
 " set colouring properly
 set t_Co=256
 set background=dark
-colorscheme distinguished
+colorscheme elflord
 
 " use "jj" or "kk" rather than "Esc"
 inoremap jj <Esc>

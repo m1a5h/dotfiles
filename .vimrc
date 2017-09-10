@@ -6,6 +6,18 @@ set nocompatible
 " don't specify filetypes for the Vundle bit
 filetype off
 
+" NetRW settings
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+augroup ProjectDrawer
+	autocmd!
+	autocmd VimEnter * :Vexplore
+augroup END
+au VimEnter * wincmd l
+
 " set runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()

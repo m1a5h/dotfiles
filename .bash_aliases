@@ -3,6 +3,7 @@ alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
 alias dmesg='dmesg | tail --follow' # see what's happening
 alias rX='sudo pkill X' # restart X
+alias stu='sudo service lightdm start'
 alias sudo='sudo '
 
 # history
@@ -63,8 +64,8 @@ alias vbablue='vba -F2 ~/ROMs/Pokemon_Blue.zip'
 # start a virtual machine
 alias vms='vboxmanage startvm '
 
-# to read
-alias r='evince ~/read/Now/*pdf &'
+# start ranger file manager
+alias r='ranger'
 
 # clean things up
 alias bb='bleachbit -c $(cat ~/.bleachbit)'

@@ -122,6 +122,7 @@ alias gitt='export PS1="[\033[01;34m]\W\$(__git_ps1)$ [\033[00m] "'
 PATH=$PATH:$HOME/racket/bin # Add RVM to PATH for scripting
 # source ~/perl5/perlbrew/etc/bashrc
 export PYTHONPATH="~/bin/wxPython-src-2.9.4.0/wxPython"
+export PATH=~/.local/bin/:$PATH
 export LD_LIBRARY_PATH="~/bin/wxPython-src-2.9.4.0/bld/lib"
 export PYTHONSTARTUP=~/.pythonrc
 

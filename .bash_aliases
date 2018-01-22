@@ -78,3 +78,7 @@ alias tog='tmux a -t together || tmux new -s together ssh together'
 # virtual centos server
 alias stap='VBoxHeadless -s apollo &'
 alias apo='tmux a -t apollo || tmux new -s apollo ssh apollo'
+
+# adjust brightness via command line
+display=$(xrandr -q | grep "primary" | awk '{ print $1 }')
+alias bright='xrandr --output $display --brightness '

@@ -145,3 +145,6 @@ export SDKMAN_DIR="~/.sdkman"
 
 # run MS-SQL tools
 export PATH="$PATH:/opt/mssql-tools/bin"
+
+# added by Anaconda3 installer
+export PATH="$PATH:/home/smash/anaconda3/bin"

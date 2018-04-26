@@ -4,12 +4,16 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
-" Core Bundle
-Bundle 'gmarik/Vundle.vim'
+" Core Plugins
+Plugin 'gmarik/Vundle.vim'
 
-" Your Bundles Here
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'ctrlpvim/ctrlp.vim'
+" Plugins Here
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'valloric/youcompleteme'
+Plugin 'SirVer/ultisnips'
+Plugin 'klen/python-mode'
 
 " Settings
 filetype plugin indent on

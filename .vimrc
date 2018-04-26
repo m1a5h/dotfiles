@@ -1,6 +1,10 @@
-set nocompatible
-filetype off
+" My Vimrc file
 
+" Don't try to be Vi
+set nocompatible
+
+" Setup for Vundle
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
@@ -11,7 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'valloric/youcompleteme'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'klen/python-mode'
 

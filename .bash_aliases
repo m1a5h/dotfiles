@@ -82,3 +82,6 @@ alias apo='tmux a -t apollo || tmux new -s apollo ssh apollo'
 # adjust brightness via command line
 display=$(xrandr -q | grep "primary" | awk '{ print $1 }')
 alias bright='xrandr --output $display --brightness '
+
+# learning stuff
+function learn () { subject=${1}${2}; tmux a -t $subject || tmux new -s $subject -c ~/learning/${1}/*${2}* ; }

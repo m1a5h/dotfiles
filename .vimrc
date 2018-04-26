@@ -16,10 +16,13 @@ filetype plugin indent on
 set number relativenumber	
 syntax enable
 set background=dark
-let g:solarized_termcolors = 256
-colorscheme solarized
+" let g:solarized_termcolors = 256
+colorscheme delek
+highlight Comment cterm=bold
 
 " use ctags with vim
 nnoremap <silent> <Leader> :CtrlPTag<cr>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
+" use 'jk' for Escape
+inoremap jk <Esc>

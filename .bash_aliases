@@ -3,7 +3,7 @@ alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
 alias dmesg='dmesg | tail --follow' # see what's happening
 alias rX='sudo pkill X' # restart X
-alias stu='sudo service lightdm start'
+alias stu='sudo service lightdm start' # start lightdm
 alias sudo='sudo '
 
 # history
@@ -60,8 +60,6 @@ alias pls='sudo $(history -p \!\!)'
 
 # open Pokemon Blue in VisualBoyAdvance
 alias vbablue='vba -F2 ~/ROMs/Pokemon_Blue.zip'
-
-# start a virtual machine
 alias vms='vboxmanage startvm '
 
 # start ranger file manager
@@ -71,11 +69,11 @@ alias r='ranger'
 alias bb='bleachbit -c $(cat ~/.bleachbit)'
 alias sbb='sudo bleachbit -c $(cat ~/.bleachbit)'
 
-# virtual ubuntu webserver
+# virtual Ubuntu server
 alias startog='VBoxHeadless -s together &'
 alias tog='tmux a -t together || tmux new -s together ssh together'
 
-# virtual centos server
+# virtual CentOS server
 alias stap='VBoxHeadless -s apollo &'
 alias apo='tmux a -t apollo || tmux new -s apollo ssh apollo'
 
@@ -84,4 +82,11 @@ display=$(xrandr -q | grep "primary" | awk '{ print $1 }')
 alias bright='xrandr --output $display --brightness '
 
 # learning stuff
-function learn () { subject=${1}${2}; tmux a -t $subject || tmux new -s $subject -c ~/learning/${1}/*${2}* ; }
+function learn () {
+	subject=${@};
+	path=$(echo "$HOME/learning/*$subject" | sed 's/\ /\*\/\*/g; s/$/*/g' );
+	subject=$(echo $subject | sed 's/\ //g');
+	echo "$subject";
+	echo "$path";
+	tmux a -t ${subject} || tmux new -s ${subject} -c ${path};
+}

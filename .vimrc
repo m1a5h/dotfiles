@@ -18,6 +18,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'klen/python-mode'
+Plugin 'vim-airline/vim-airline'
 
 " Settings
 filetype plugin indent on

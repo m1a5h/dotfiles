@@ -156,7 +156,6 @@ warzone2100.logs
 wine.tmp
 winetricks.temporary_files
 x11.debug_logs
-xchat.logs
 xine.cache
 yum.clean_all
 yum.vacuum

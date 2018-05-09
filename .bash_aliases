@@ -1,6 +1,7 @@
 alias emacs='emacs -nw' # keep emacs in the terminal window
 alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
+alias octave='octave --no-gui' # start GNU Octave REPL on command line
 alias dmesg='dmesg | tail --follow' # see what's happening
 alias rX='sudo pkill X' # restart X
 alias stu='sudo service lightdm start' # start lightdm
@@ -28,7 +29,7 @@ alias dnfs='dnf search'
 alias sar='sudo apt remove'
 
 # remote access the Pi
-alias rpi='ssh smash@raspberrypi.local'
+alias rpi='ssh pi@raspberrypi.local'
 alias rpix='rpi -X'
 alias vpi='vncviewer raspberrypi.local:1'
 

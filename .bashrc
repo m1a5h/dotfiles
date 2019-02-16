@@ -7,6 +7,7 @@
 # set -x
 
 # Cow says a quote as you open the terminal
+export PATH=$PATH:/usr/games
 if [ -x /usr/games/fortune ]; then
      fortune -a | cowsay
 fi
@@ -37,8 +38,8 @@ shopt -s globstar
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$fedora_chroot" ] && [ -r /etc/fedora_chroot ]; then
-    fedora_chroot=$(cat /etc/fedora_chroot)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    fedora_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)

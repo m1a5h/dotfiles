@@ -48,6 +48,15 @@ Smashing config
      ;; (defalias 'list-buffers 'ibuffer-other-window)
    #+END_SRC
 
+** Yes or No or Y or N
+   #+BEGIN_SRC emacs-lisp
+     (fset 'yes-or-no-p 'y-or-n-p)
+   #+END_SRC
+
+**  Refresh to revert buffer
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<F5>") 'revert-buffer)
+   #+END_SRC
 * UI
 
 ** Themes

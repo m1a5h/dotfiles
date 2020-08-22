@@ -67,8 +67,8 @@ alias vms='vboxmanage startvm '
 alias r='ranger'
 
 # clean things up
-alias bb='bleachbit -c $(cat ~/.bleachbit)'
-alias sbb='sudo bleachbit -c $(cat ~/.bleachbit)'
+alias bb='bleachbit -c $(bleachbit -l)'
+alias sbb='sudo bleachbit -c $(bleachbit -l)'
 
 # virtual Ubuntu server
 alias startog='VBoxHeadless -s together &'

@@ -115,6 +115,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Add to PATH for snaps
+PATH=/snap/bin:$PATH
+
 # for using git
 source ~/.git-completion.bash
 source ~/.git-prompt.sh

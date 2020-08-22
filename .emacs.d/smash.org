@@ -275,6 +275,22 @@ Smashing config
        (global-flycheck-mode))
    #+END_SRC
 
+* Making
+** Reveal.js presentations
+   #+BEGIN_SRC emacs-lisp
+     (use-package htmlize
+       :ensure t)
+
+     (use-package ox-reveal
+       :ensure ox-reveal)
+
+     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+     (setq org-reveal-mathjax t)
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+
 * Javascript
 
 ** RJSX Mode

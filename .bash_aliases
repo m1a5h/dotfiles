@@ -91,3 +91,10 @@ function learn () {
 	echo "$path";
 	tmux a -t ${subject} || tmux new -s ${subject} -c ${path};
 }
+
+# create or list tmux sessions
+function tmx {
+       ((!$#)) && tmux ls && return
+       [[ $# -eq 1 ]] && tmux attach-session -t $1 || tmux new-session -s $1 -c $2 $3
+}
+

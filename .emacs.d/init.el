@@ -18,4 +18,10 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;; Load most configuration from Org file
 (org-babel-load-file (expand-file-name "~/.emacs.d/smash.org"))
+
+;; File for custom variables
+(setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))

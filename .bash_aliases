@@ -3,7 +3,7 @@ alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
 alias octave='octave --no-gui' # start GNU Octave REPL on command line
 alias dmesg='dmesg | tail --follow' # see what's happening
-alias rX='sudo pkill X' # restart X
+alias rx='pkill X' # restart X
 alias stu='sudo service lightdm start' # start lightdm
 alias sudo='sudo '
 
@@ -98,3 +98,5 @@ function tmx {
        [[ $# -eq 1 ]] && tmux attach-session -t $1 || tmux new-session -s $1 -c $2 $3
 }
 
+# Kill and restart Firefox 
+alias rff="for p in $(pidof firefox); do kill $p; done && firefox &"

@@ -171,7 +171,9 @@ Smashing config
 
 ** Centaur tabs
    #+BEGIN_SRC emacs-lisp
-   (use-package centaur-tabs :ensure t :config
+   (use-package centaur-tabs
+     :ensure t
+     :config
      (setq centaur-tabs-set-bar 'over 
            centaur-tabs-set-icons t
 	   centaur-tabs-gray-out-icons 'buffer

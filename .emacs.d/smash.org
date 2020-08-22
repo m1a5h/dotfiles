@@ -250,7 +250,7 @@ Smashing config
 	("C-<prior>" . centaur-tabs-backward))
    #+END_SRC
 
-** Company
+** Company autocomplete
    #+BEGIN_SRC emacs-lisp
      (use-package company
        :ensure t

@@ -42,6 +42,12 @@ Smashing config
    (show-paren-mode 1)
    #+END_SRC
 
+** Nicer buffer list
+   #+BEGIN_SRC emacs-lisp
+   (defalias 'list-buffers 'ibuffer)
+     ;; (defalias 'list-buffers 'ibuffer-other-window)
+   #+END_SRC
+
 * UI
 
 ** Themes

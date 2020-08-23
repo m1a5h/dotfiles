@@ -266,20 +266,39 @@ Smashing config
    #+END_SRC
 
 ** Company autocomplete
+   #+begin_comment
    #+BEGIN_SRC emacs-lisp
      (use-package company
        :ensure t
        :init
        (add-hook 'after-init-hook 'global-company-mode))
    #+END_SRC
+   #+end_comment
   
+** Auto-complete autocomplete
+   #+begin_src emacs-lisp
+     (use-package auto-complete
+       :ensure t
+       :init
+       (progn
+	 (ac-config-default)
+	 (global-auto-complete-mode t)))
+   #+end_src
 ** Flycheck
    #+BEGIN_SRC emacs-lisp
      (use-package flycheck
        :ensure t
        :init
-       (global-flycheck-mode))
+       (global-flycheck-mode t))
    #+END_SRC
+
+** Yasnippet
+   #+begin_src emacs-lisp
+   (use-package yasnippet
+       :ensure t
+       :init
+       (yas-global-mode 1))
+   #+end_src
 
 * Making
 ** Reveal.js presentations
@@ -293,9 +312,8 @@ Smashing config
      (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
      (setq org-reveal-mathjax t)
    #+END_SRC
-
+   
 * Javascript
-
 ** RJSX Mode
    #+BEGIN_SRC emacs-lisp
      (use-package rjsx-mode
@@ -327,3 +345,14 @@ Smashing config
      :after (rjsx-mode)
      :hook (rjsx-mode . prettier-js-mode))
    #+END_SRC
+
+* Python
+** Jedi (Company)
+   #+begin_src emacs-lisp
+     (use-package company-jedi
+       :ensure t
+       :config
+       (add-to-list 'company-backends 'company-jedi))
+       ;; (add-hook 'python-mode-hook 'jedi:setup)
+       ;; (add-hook 'python-mode-hook 'jedi:ac-setup))
+   #+end_src

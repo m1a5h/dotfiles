@@ -53,10 +53,14 @@ Smashing config
      (fset 'yes-or-no-p 'y-or-n-p)
    #+END_SRC
 
-**  Refresh to revert buffer
+** Refresh to revert buffer
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "<F5>") 'revert-buffer)
    #+END_SRC
+** Indent on new lines
+   #+begin_src emacs-lisp
+   (define-key global-map (kbd "RET") 'newline-and-indent)
+   #+end_src
 * UI
 
 ** Themes
@@ -101,6 +105,8 @@ Smashing config
    #+BEGIN_SRC emacs-lisp
    (setq ido-everywhere t)
    (setq ido-enable-flex-matching t)
+   (setq ido-use-filename-at-point 'guess)
+   (setq ido-create-new-buffer 'always)
    (ido-mode t)
    #+END_SRC
 
@@ -287,9 +293,6 @@ Smashing config
      (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
      (setq org-reveal-mathjax t)
    #+END_SRC
-
-   #+RESULTS:
-   : t
 
 * Javascript
 

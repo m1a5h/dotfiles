@@ -62,7 +62,6 @@ Smashing config
    (define-key global-map (kbd "RET") 'newline-and-indent)
    #+end_src
 * UI
-
 ** Themes
    #+BEGIN_SRC emacs-lisp
    (use-package doom-themes
@@ -354,8 +353,6 @@ Smashing config
        :ensure t
        :config
        (add-to-list 'company-backends 'company-jedi))
-       ;; (add-hook 'python-mode-hook 'jedi:setup)
-       ;; (add-hook 'python-mode-hook 'jedi:ac-setup))
    #+end_src
    #+end_comment
 ** Jedi

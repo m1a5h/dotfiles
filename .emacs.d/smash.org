@@ -66,8 +66,8 @@ Smashing config
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-M-<down>") 'enlarge-window)
      (global-set-key (kbd "C-M-<up>") 'shrink-window)
-     (global-set-key (kbd "C-M-<left>") 'enlarge-window-horizontally)
-     (global-set-key (kbd "C-M-<right>") 'shrink-window-horizontally)
+     (global-set-key (kbd "C-M-<right>") 'enlarge-window-horizontally)
+     (global-set-key (kbd "C-M-<left>") 'shrink-window-horizontally)
    #+END_SRC
 ** Themes
    #+BEGIN_SRC emacs-lisp
@@ -297,7 +297,6 @@ Smashing config
        :init
        (global-flycheck-mode t))
    #+END_SRC
-
 ** Yasnippet
    #+begin_src emacs-lisp
    (use-package yasnippet

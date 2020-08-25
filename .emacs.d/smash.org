@@ -69,6 +69,10 @@ Smashing config
      (global-set-key (kbd "C-M-<right>") 'enlarge-window-horizontally)
      (global-set-key (kbd "C-M-<left>") 'shrink-window-horizontally)
    #+END_SRC
+** Split window default
+   #+BEGIN_SRC emacs-lisp
+     (setq split-width-threshold 1)
+   #+END_SRC
 ** Themes
    #+BEGIN_SRC emacs-lisp
    (use-package doom-themes

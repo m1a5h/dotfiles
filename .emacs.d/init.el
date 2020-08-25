@@ -5,6 +5,8 @@
 ;; Enables basic packaging support
 (require 'package)
 (setq package-enable-at-startup nil)
+;; fix issue with installing GNU packages
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;; Adds the Melpa, Marmalade and GNU archive to the list of available repositories
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)

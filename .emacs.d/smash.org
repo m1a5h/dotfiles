@@ -62,7 +62,7 @@ Smashing config
    (define-key global-map (kbd "RET") 'newline-and-indent)
    #+end_src
 * UI
-** Reslze windows
+** Resize windows
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-M-<down>") 'enlarge-window)
      (global-set-key (kbd "C-M-<up>") 'shrink-window)

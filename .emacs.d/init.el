@@ -6,15 +6,18 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 ;; fix issue with installing GNU packages
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;; Adds the Melpa, Marmalade and GNU archive to the list of available repositories
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+;; Stable version of Melpa
+;; (add-to-list 'package-archives
+;;              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;; Commenting out Marmalade (for now at least) at its certs are expired
 ;; (add-to-list 'package-archives
 ;; 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-	     '("gnu" . "http://elpa.gnu.org/packages/") t)
+;; (add-to-list 'package-archives
+;;	     '("gnu" . "http://elpa.gnu.org/packages/") t)
 
 ;; Initializes the package infrastructure
 (package-initialize)

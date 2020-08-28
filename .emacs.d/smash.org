@@ -338,6 +338,21 @@ Smashing config
      (setq org-reveal-mathjax t)
    #+END_SRC
    
+* Web Dev
+** Web Mode
+  #+begin_src emacs-lisp
+    (use-package web-mode
+      :ensure t
+      :config
+      (add-to-list  'auto-mode-alist '("\\.html\\'" . web-mode))
+      (setq web-mode-engines-alist
+	    '(("django" . "\\.html\\")))
+      (setq web-mode-ac-sources-alist
+	    '(("css" . (ac-sources-css-property))
+	      ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+      (setq web-mode-enable-auto-closing t))
+  #+end_src
+
 * Javascript
 ** RJSX Mode
    #+BEGIN_SRC emacs-lisp

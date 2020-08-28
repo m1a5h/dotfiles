@@ -315,7 +315,11 @@ Smashing config
        :init
        (yas-global-mode 1))
    #+end_src
-
+** IEdit
+   #+BEGIN_SRC emacs-lisp
+     (use-package iedit
+       :ensure t)
+   #+END_SRC
 * Making
 ** Reveal.js presentations
    #+BEGIN_SRC emacs-lisp

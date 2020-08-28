@@ -155,7 +155,8 @@ Smashing config
      (setq dashboard-set-file-icons t)
      (setq dashboard-set-heading-icons t)
      :config
-     (dashboard-setup-startup-hook))
+     (dashboard-setup-startup-hook)
+     (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
    #+END_SRC
 
 ** Treemacs

@@ -119,7 +119,7 @@ Smashing config
    (setq ido-create-new-buffer 'always)
    (ido-mode t)
    #+END_SRC
-
+   
 * General packages
  
 ** Try package
@@ -199,7 +199,7 @@ Smashing config
        (("M-y" . counsel-yank-pop)
 	:map ivy-minibuffer-map
 	("M-y" . ivy-next-line)))
- 
+
      (use-package ivy
        :ensure t
        :diminish (ivy-mode)
@@ -320,10 +320,11 @@ Smashing config
        (yas-global-mode 1))
    #+end_src
 ** IEdit
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (use-package iedit
-       :ensure t)
-   #+END_SRC
+     :ensure t)
+   #+end_src
+
 * Making
 ** Reveal.js presentations
    #+BEGIN_SRC emacs-lisp

@@ -106,7 +106,29 @@ Smashing config
 
 *** Org settings
     #+BEGIN_SRC emacs-lisp
-    (setq org-support-shift-select t)
+      (setq org-support-shift-select t)
+      (custom-set-variables
+       '(org-directory "~/orgfiles")
+       '(org-default-notes-file (concat org-directory "/notes.org"))
+       '(org-export-html-postamble nil)
+       '(org-startup-folded (quote oveview))
+       '(org-startup-indented t))
+
+      (setq org-file-apps
+	    (append '(("\\.pdf\\'" . "zathura %s")) org-file-apps))
+
+      (global-set-key "\C-ca" 'org-agenda)
+
+      (use-package org-ac
+	:ensure t
+	:init
+	(progn
+	  (require 'org-ac)
+	  (org-ac/config-default)))
+
+      (global-set-key (kbd "C-c c") 'org-capture)
+
+      (setq org-agenda-files (list "~/orgfiles/gcal.org"))
     #+END_SRC
 
 * Modes 

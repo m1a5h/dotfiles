@@ -6,7 +6,7 @@ alias dmesg='dmesg | tail --follow' # see what's happening
 alias rx='pkill X' # restart X
 alias stu='sudo service lightdm start' # start lightdm
 alias sudo='sudo '
-alias zathura='z'
+alias z='zathura'
 
 # history
 alias h='history'

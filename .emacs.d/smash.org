@@ -151,6 +151,20 @@ Smashing config
   ("j" "Journal" entry (file+datetree "~/org/journal.org")
   "* %?\nEntered on %U\n %i\n %a")))
  #+end_src
+*** Org GCal
+#+begin_src emacs-lisp
+  (setq package-check-signature nil)
+
+  (use-package org-gcal
+    :ensure t
+    :config
+    (setq org-gcal-client-id "964075760905-4flq0pgl0531kd4j4lqa1jbouef7i5eu.apps.googleusercontent.com"
+    org-gcal-client-secret "8aCAnZglYE3QbwIDon0npjb3"
+    org-gcal-file-alist '(("matthewiashman@gmail.com" . "~/org/gcal.org"))))
+
+  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+#+end_src
 *** Org capture from external
 #+begin_src emacs-lisp
   (defadvice org-capture-finalize
@@ -406,7 +420,6 @@ Smashing config
      (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
      (setq org-reveal-mathjax t)
    #+END_SRC
-   
 * Web Dev
 ** Web Mode
   #+begin_src emacs-lisp

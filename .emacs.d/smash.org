@@ -85,7 +85,7 @@ Smashing config
    #+BEGIN_SRC emacs-lisp
    (use-package doom-modeline
      :ensure t
-     :hook (after-init  . doom-modeline-mode))
+     :hook (after-init . doom-modeline-mode))
    #+END_SRC
 
 ** Icons
@@ -149,7 +149,7 @@ Smashing config
   ("t" "To Do Item" entry (file+headline "~/org/todo.org" "To Do Items")
   "* %?\n%T" :prepend t)
   ("j" "Journal" entry (file+datetree "~/org/journal.org")
-  "* %?\nEntered on %U\n  %i\n  %a")))
+  "* %?\nEntered on %U\n %i\n %a")))
  #+end_src
 *** Org capture from external
 #+begin_src emacs-lisp
@@ -166,7 +166,7 @@ Smashing config
         (delete-frame)))
 
   (use-package noflet
-    :ensure t )
+    :ensure t)
 
   (defun make-capture-frame ()
     "Create a new frame and run org-capture."
@@ -280,7 +280,7 @@ Smashing config
 
      (use-package swiper
        :ensure t
-       :bind (("C-s" .  swiper)
+       :bind (("C-s" . swiper)
 	      ("C-r" . swiper)
 	      ("C-c C-r" . ivy-resume)
 	      ("M-x" . counsel-M-x)
@@ -316,7 +316,7 @@ Smashing config
 
 ** Disable mouse
    #+BEGIN_SRC emacs-lisp
-   (use-package  disable-mouse
+   (use-package disable-mouse
      :ensure t
      :config
      (global-disable-mouse-mode))

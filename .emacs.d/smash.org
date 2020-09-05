@@ -474,6 +474,14 @@ Smashing config
     (setq py-python-command "python3")
     (setq python-shell-interpreter "python3")
   #+END_SRC
+** Virtualenv
+#+begin_src emacs-lisp
+  (use-package virtualenvwrapper
+    :ensure t
+    :config
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell))
+#+end_src
 ** Jedi (Company)
    #+begin_comment
    #+begin_src emacs-lisp

@@ -471,6 +471,7 @@ Smashing config
 * Python
 ** Python 3
   #+BEGIN_SRC emacs-lisp
+    (setq py-python-command "python3")
     (setq python-shell-interpreter "python3")
   #+END_SRC
 ** Jedi (Company)

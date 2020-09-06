@@ -420,6 +420,21 @@ Smashing config
      (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
      (setq org-reveal-mathjax t)
    #+END_SRC
+* Shell
+** Better
+#+begin_src emacs-lisp
+  (use-package better-shell
+    :ensure t
+    :bind (("C-'" . better-shell-shell)
+           ("C-;" . better-shell-remote-open)))
+#+end_src
+* Better
+#+begin_src emacs-lisp
+  (use-package better-shell
+    :ensure t
+    :bind (("C-'" . better-shell-shell)
+           ("C-;" . better-shell-remote-open)))
+#+end_src*
 * Web Dev
 ** Web Mode
   #+begin_src emacs-lisp

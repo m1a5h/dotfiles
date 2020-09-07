@@ -100,5 +100,11 @@ function tmx {
 }
 
 # Kill and restart Firefox 
-alias rff="for p in $(pidof firefox); do kill $p; done && nohup firefox &"
+function fin () {
+	for p in $(pidof $1)
+	do
+		kill $p
+	done
+	nohup $1
+}
 

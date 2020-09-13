@@ -44,7 +44,7 @@ Smashing config
 #+END_SRC
 ** Refresh to revert buffer
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<F5>") 'revert-buffer)
+  (global-set-key (kbd "<f5>") 'revert-buffer)
 #+END_SRC
 ** Indent on new lines
 #+begin_src emacs-lisp

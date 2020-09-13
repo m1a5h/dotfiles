@@ -307,24 +307,24 @@
         <command>dmenu_run</command>
       </action>
     </keybind>
-    <!-- <!-\- Connect to Uproar Bluetooth-\-> -->
-    <!-- <keybind key="W-U"> -->
-    <!--   <action name="Execute"> -->
-    <!-- 	<command>bluetoothctl connect 38:F3:2E:70:94:B6</command> -->
-    <!--   </action> -->
-    <!-- </keybind> -->
-    <!-- <!-\- Connect to Sony Bluetooth Earphones-\-> -->
-    <!-- <keybind key="W-W"> -->
-    <!--   <action name="Execute"> -->
-    <!-- 	<command>bluetoothctl connect 90:7A:58:13:E7:BA</command> -->
-    <!--   </action> -->
-    <!-- </keybind> -->
-    <!-- <!-\- Disconnect all Bluetooth-\-> -->
-    <!-- <keybind key="W-X"> -->
-    <!--   <action name="Execute"> -->
-    <!-- 	<command>bluetoothctl disconnect</command> -->
-    <!--   </action> -->
-    <!-- </keybind> -->
+    <!-- Connect to Uproar Bluetooth-->
+    <keybind key="W-U">
+      <action name="Execute">
+	<command>bluetoothctl connect 38:F3:2E:70:94:B6</command>
+      </action>
+    </keybind>
+    <!-- Connect to Sony Bluetooth Earphones-->
+    <keybind key="W-W">
+      <action name="Execute">
+	<command>bluetoothctl connect 90:7A:58:13:E7:BA</command>
+      </action>
+    </keybind>
+    <!-- Disconnect all Bluetooth-->
+    <keybind key="W-X">
+      <action name="Execute">
+	<command>bluetoothctl disconnect</command>
+      </action>
+    </keybind>
     <!-- Suspend session -->
     <keybind key="W-S">
       <action name="Execute">

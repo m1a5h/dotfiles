@@ -332,6 +332,12 @@
         <command>systemctl suspend</command>
       </action>
     </keybind>
+    <!-- Kill X session -->
+    <keybind key="W-A-X">
+      <action name="Execute">
+	<command>pkill X</command>
+      </action>
+    </keybind>
     <!-- Keybindings for window switching -->
     <keybind key="A-Tab">
       <action name="NextWindow">

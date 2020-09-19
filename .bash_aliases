@@ -105,7 +105,7 @@ function fin () {
 	do
 		kill $p
 	done
-	nohup $1
+	nohup $1 &
 }
 
 # Save startx log into file in home directory

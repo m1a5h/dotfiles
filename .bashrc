@@ -115,6 +115,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Add to PATH for personal script ~/bin
+[ -x $HOME/bin ] && PATH=$HOME/bin:$PATH
+
 # Add to PATH for snaps
 PATH=/snap/bin:$PATH
 

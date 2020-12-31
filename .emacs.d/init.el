@@ -1,38 +1,43 @@
-;.; .emacs.d/init.el
-;; ===================================
-;; MELPA Package Support
-;; ===================================
-;; Enables basic packaging support
+;; Simplify interface
+(setq inhibit-startup-message t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
 (require 'package)
 (setq package-enable-at-startup nil)
-;; fix issue with installing GNU packages
-;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-;; Adds the Melpa, Marmalade and GNU archive to the list of available repositories
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-;; Stable version of Melpa
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; Commenting out Marmalade (for now at least) at its certs are expired
-;; (add-to-list 'package-archives
-;; 	     '("marmalade" . "https://marmalade-repo.org/packages/") t)
-;; (add-to-list 'package-archives
-;;	     '("gnu" . "https://elpa.gnu.org/packages/") t)
+	     '("melpa" . "https://melpa.org/packages/"))
 
-;; Initializes the package infrastructure
 (package-initialize)
-;; If there are no archived package contents, refresh them
-(when (not package-archive-contents)
-  (package-refresh-contents))
 
+;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; Load most configuration from Org file
-(org-babel-load-file (expand-file-name "~/.emacs.d/smash.org"))
+(use-package try
+  :ensure t)
 
-;; File for custom variables
-(setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+;; Org-mode stuff
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (org-bullets which-key use-package try))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

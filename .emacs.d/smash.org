@@ -37,7 +37,7 @@ Smashing config
    ((t (:inherit ace-jump-face-foreground :height 3.0))))))
    #+END_SRC
    
-* TODO Org mode
+* Org mode
 ** Org bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
@@ -116,8 +116,64 @@ Smashing config
   #+END_SRC
 
 * Theming
+** Doom emacs
   #+BEGIN_SRC emacs-lisp
-  (use-package zenburn-theme
-  :ensure t
-  :config (load-theme 'zenburn t))
+    (use-package doom-themes
+      :ensure t
+      :config (load-theme 'doom-acario-dark t))
+  #+END_SRC
+  
+  #+BEGIN_SRC emacs-lisp
+    (use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode))
+  #+END_SRC
+** Icons
+   #+BEGIN_SRC emacs-lisp
+     (use-package all-the-icons
+       :ensure t)
+   #+END_SRC
+* Yasnippet
+  #+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :init
+      (yas-global-mode 1))
+  #+END_SRC
+* Python
+** Elpy
+   #+BEGIN_SRC emacs-lisp
+     (use-package elpy
+       :ensure t
+       :config
+       (elpy-enable))
+     (setq elpy-rpc-python-command "python3")
+   #+END_SRC
+** Jedi
+   #+BEGIN_SRC emacs-lisp
+     (use-package jedi
+       :ensure t
+       :config
+       (add-hook 'python-mode-hook 'jedi:setup)
+       (add-hook 'python-mode-hook 'jedi:ac-setup))
+   #+END_SRC
+** Python 3
+   #+BEGIN_SRC emacs-lisp
+     (setq py-python-command "python3")
+     (setq python-shell-interpreter "python3")
+   #+END_SRC
+** Virtualenv
+   #+BEGIN_SRC emacs-lisp
+     (use-package virtualenvwrapper
+       :ensure t
+       :config
+       (venv-initialize-interactive-shells)
+       (venv-initialize-eshell))
+   #+END_SRC
+* Flycheck
+  #+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+		 :ensure t
+		 :init
+		 (global-flycheck-mode t))
   #+END_SRC

@@ -17,7 +17,7 @@ Smashing config
       :ensure t
       :config
       (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
-      (project-mode +1))
+      (projectile-mode +1))
   #+end_src
 * Dashboard
   #+begin_src emacs-lisp

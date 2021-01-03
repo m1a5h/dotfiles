@@ -11,6 +11,19 @@ Smashing config
      (global-set-key (kbd "<f5>") 'revert-buffer)
   #+END_SRC
 
+* Dashboard
+  #+begin_src emacs-lisp
+    (use-package dashboard
+      :ensure t
+      :init
+      (progn
+	(setq dashboard-items '((recents . 5)
+				(projects . 5))))
+      (setq dashboard-set-heading-icons t)
+      :config
+      (dashboard-setup-startup-hook)
+      (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
+  #+end_src
 * Try
   #+BEGIN_SRC emacs-lisp
   (use-package try
@@ -36,7 +49,7 @@ Smashing config
    '(aw-leading-char-face
    ((t (:inherit ace-jump-face-foreground :height 3.0))))))
    #+END_SRC
-   
+
 * Org mode
 ** Org bullets
   #+BEGIN_SRC emacs-lisp
@@ -97,7 +110,6 @@ Smashing config
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)))
   #+END_SRC
-
 * Auto-complete
   #+BEGIN_SRC emacs-lisp
   (use-package auto-complete
@@ -114,7 +126,6 @@ Smashing config
   :ensure
   :bind ("M-s" . avy-goto-char))
   #+END_SRC
-
 * Theming
 ** Doom emacs
   #+BEGIN_SRC emacs-lisp

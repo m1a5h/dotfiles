@@ -11,6 +11,14 @@ Smashing config
      (global-set-key (kbd "<f5>") 'revert-buffer)
   #+END_SRC
 
+* Projectile
+  #+begin_src emacs-lisp
+    (use-package projectile
+      :ensure t
+      :config
+      (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+      (project-mode +1))
+  #+end_src
 * Dashboard
   #+begin_src emacs-lisp
     (use-package dashboard
@@ -69,9 +77,6 @@ Smashing config
    (use-package htmlize
    :ensure t)
    #+END_SRC
-
-   #+RESULTS:
-
 * Ido mode
   #+BEGIN_SRC emacs-lisp
   ;; (setq ido-enable-flex-matching t)

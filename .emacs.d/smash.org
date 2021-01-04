@@ -1,3 +1,4 @@
+
 #+STARTIP: overview
 
 Smashing config
@@ -27,6 +28,7 @@ Smashing config
       (progn
 	(setq dashboard-items '((recents . 5)
 				(projects . 5))))
+      (setq dashboard-set-file-icons t)
       (setq dashboard-set-heading-icons t)
       :config
       (dashboard-setup-startup-hook)

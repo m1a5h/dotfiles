@@ -8,10 +8,10 @@ Smashing config
      (setq inhibit-startup-message t)
      (menu-bar-mode -1)
      (tool-bar-mode -1)
+     (scrollt-bar-mode -1)
      (fset 'yes-or-no-p 'y-or-n-p)
      (global-set-key (kbd "<f5>") 'revert-buffer)
   #+END_SRC
-
 * Projectile
   #+begin_src emacs-lisp
     (use-package projectile

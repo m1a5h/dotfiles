@@ -139,7 +139,10 @@ Smashing config
 
     (use-package doom-modeline
       :ensure t
-      :hook (after-init . doom-modeline-mode))
+      :hook (after-init . doom-modeline-mode)
+      :init
+      (progn
+	(setq doom-modeline-icon t)))
   #+END_SRC
 ** Icons
    #+BEGIN_SRC emacs-lisp

@@ -14,6 +14,13 @@ Smashing config
      (setq split-width-threshold 1)
      (global-hl-line-mode t)
   #+END_SRC
+* Hungry delete
+  #+begin_src emacs-lisp
+    (use-package hungry-delete
+      :ensure t
+      :config
+      (global-hungry-delete-mode))
+  #+end_src
 * Expand region
   #+begin_src emacs-lisp
     (use-package expand-region

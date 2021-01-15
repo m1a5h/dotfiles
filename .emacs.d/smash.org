@@ -3,7 +3,7 @@
 
 Smashing config
 
-* Simplify interface
+* Interface tweaks
    #+BEGIN_SRC emacs-lisp
      (setq inhibit-startup-message t)
      (menu-bar-mode -1)
@@ -11,6 +11,8 @@ Smashing config
      (scroll-bar-mode -1)
      (fset 'yes-or-no-p 'y-or-n-p)
      (global-set-key (kbd "<f5>") 'revert-buffer)
+     (setq split-width-threshold 1)
+     (global-hl-line-mode t)
   #+END_SRC
 * Undo tree
   #+BEGIN_SRC emacs-lisp

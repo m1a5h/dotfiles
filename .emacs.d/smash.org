@@ -1,4 +1,3 @@
-
 #+STARTIP: overview
 
 Smashing config

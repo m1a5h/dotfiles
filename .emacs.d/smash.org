@@ -140,6 +140,20 @@ Smashing config
        (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
 	 (org-capture)))
    #+END_SRC
+** Org GCal
+   #+BEGIN_SRC emacs-lisp
+     (setq package-check-signature nil)
+
+     (use-package org-gcal
+       :ensure t
+       :config
+       (setq org-gcal-client-id "oauth 2.0 client ID"
+	     org-gcal-client-secret "client secret"
+	     org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org"))))
+
+     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+   #+END_SRC
 ** Org reveal
    #+BEGIN_SRC emacs-lisp
      (use-package ox-reveal

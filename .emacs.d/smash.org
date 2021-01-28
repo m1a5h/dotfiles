@@ -246,6 +246,13 @@ Smashing config
      (use-package all-the-icons
        :ensure t)
    #+END_SRC
+* Better Shell
+  #+BEGIN_SRC emacs-lisp
+    (use-package better-shell
+      :ensure t
+      :bind (("C-'" . better-shell-shell)
+	     ("C-;" . better-shell-remote-open)))
+  #+END_SRC
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet

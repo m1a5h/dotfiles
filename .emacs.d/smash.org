@@ -245,8 +245,7 @@ Smashing config
        ("c" recenter-top-bottom "recenter")
        ("n" next-line "down")
        ("p" (lambda () (interactive) (forward-line -1))  "up")
-       ("g" goto-line "goto-line")
-       ))
+       ("g" goto-line "goto-line")))
 
     ;; Hydra for some org-mode stuff
     (global-set-key
@@ -261,7 +260,7 @@ Smashing config
        ("o" org-clock-out "Clock-Out") ; you might also want (setq org-log-note-clock-out t)
        ("j" org-clock-goto "Clock Goto") ; global visit the clocked task
        ("c" org-capture "Capture") ; Don't forget to define the captures you want http://orgmode.org/manual/Capture.html
-       ("l" (or )rg-capture-goto-last-stored "Last Capture"))
+       ("l" (or )rg-capture-goto-last-stored "Last Capture")))
   #+END_SRC
 * Ido mode
   #+BEGIN_SRC emacs-lisp

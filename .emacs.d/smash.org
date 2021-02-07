@@ -1,7 +1,6 @@
 #+STARTIP: overview
 
 Smashing config
-
 * Interface tweaks
    #+BEGIN_SRC emacs-lisp
      (setq inhibit-startup-message t)
@@ -165,6 +164,53 @@ Smashing config
      (use-package htmlize
        :ensure t)
    #+END_SRC
+* Elfeed
+  #+BEGIN_SRC emacs-lisp
+    (use-package elfeed
+      :ensure t
+      :bind (:map elfeed-search-mode-map
+		  ("q" . bjm/elfeed-save-db-and-bury)
+		  ("Q" . bjm/elfeed-save-db-and-bury)
+		  ("m" . elfeed-toggle-star)
+		  ("M" . elfeed-toggle-star)))
+
+    (use-package elfeed-goodies
+      :ensure t
+      :config
+      (elfeed-goodies/setup))
+
+    (use-package elfeed-org
+      :ensure t
+      :config
+      (elfeed-org)
+      (setq rmh-elfed-org-files (list "~/orgfiles/elfeed.org")))
+
+    (setq elfeed-db-directory "~/elfeeddb")
+
+    (defun elfeed-mark-all-as-read ()
+      (interactive)
+      (mark-whole-buffer)
+      (elfeed-search-untag-all-unread))
+
+    ;;functions to support syncing .elfeed between machines
+    ;;makes sure elfeed reads index from disk before launching
+    (defun bjm/elfeed-load-db-and-open ()
+      "Wrapper to load the elfeed db from disk before opening"
+      (interactive)
+      (elfeed-db-load)
+      (elfeed)
+      (elfeed-search-update--force))
+
+    ;;write to disk when quiting
+    (defun bjm/elfeed-save-db-and-bury ()
+      "Wrapper to save the elfeed db to disk before burying buffer"
+      (interactive)
+      (elfeed-db-save)
+      (quit-window))
+
+    (defalias 'elfeed-toggle-star
+      (elfeed-expose #'elfeed-search-toggle-all 'star))
+  #+END_SRC
 * Ido mode
   #+BEGIN_SRC emacs-lisp
   ;; (setq ido-enable-flex-matching t)

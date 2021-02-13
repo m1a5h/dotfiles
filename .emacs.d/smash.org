@@ -357,6 +357,14 @@ Smashing config
       :init
       (yas-global-mode 1))
   #+END_SRC
+* Markdown
+  #+begin_src emacs-lisp
+    (use-package markdown-mode
+      :ensure t)
+
+    (use-package markdown-mode+
+      :ensure t)
+  #+end_src
 * Web mode
   #+begin_src emacs-lisp
     (use-package web-mode

@@ -128,9 +128,7 @@ alias gitt='export PS1="[\033[01;34m]\W\$(__git_ps1)$ [\033[00m] "'
 
 PATH=$PATH:$HOME/racket/bin # Add RVM to PATH for scripting
 # source ~/perl5/perlbrew/etc/bashrc
-export PYTHONPATH="~/bin/wxPython-src-2.9.4.0/wxPython"
 export PATH=~/.local/bin/:$PATH
-export LD_LIBRARY_PATH="~/bin/wxPython-src-2.9.4.0/bld/lib"
 export PYTHONSTARTUP=~/.pythonrc
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -164,3 +162,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/smash/google-cloud-sdk/path.bash.inc' ]; then . '/home/smash/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smash/google-cloud-sdk/completion.bash.inc'; fi

@@ -1,579 +1,421 @@
+#+STARTIP: overview
+
 Smashing config
 
-* General settings
-** Don't show startup message
-#+BEGIN_SRC emacs-lisp
- (setq inhibit-startup-message t)
-#+END_SRC
-** Show line numbers in prog mode
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-#+END_SRC
-** Highlight line
-#+BEGIN_SRC emacs-lisp
-  (global-hl-line-mode +1)
-#+END_SRC
-** Hide menu bar
-#+BEGIN_SRC emacs-lisp
-  (menu-bar-mode -1)
-#+END_SRC
-** Hide toolbar
-#+BEGIN_SRC emacs-lisp
-  (tool-bar-mode -1)
-#+END_SRC
-** Hide scrollbar
-#+BEGIN_SRC emacs-lisp
-   (scroll-bar-mode -1)
-#+END_SRC
-** Delete selection
-#+BEGIN_SRC emacs-lisp
-  (delete-selection-mode 1)
-#+END_SRC
-** Show matching parentheses
-#+BEGIN_SRC emacs-lisp
-   (show-paren-mode 1)
-#+END_SRC
-** Nicer buffer list
-#+BEGIN_SRC emacs-lisp
-  (defalias 'list-buffers 'ibuffer)
-  ;; (defalias 'list-buffers 'ibuffer-other-window)
-#+END_SRC
-** Yes or No or Y or N
-#+BEGIN_SRC emacs-lisp
-  (fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-** Refresh to revert buffer
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<f5>") 'revert-buffer)
-#+END_SRC
-** Indent on new lines
-#+begin_src emacs-lisp
-  (define-key global-map (kbd "RET") 'newline-and-indent)
-#+end_src
-* UI
-** Resize windows
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-M-<down>") 'enlarge-window)
-  (global-set-key (kbd "C-M-<up>") 'shrink-window)
-  (global-set-key (kbd "C-M-<right>") 'enlarge-window-horizontally)
-  (global-set-key (kbd "C-M-<left>") 'shrink-window-horizontally)
-#+END_SRC
-** Split window default
-#+BEGIN_SRC emacs-lisp
-  (setq split-width-threshold 1)
-#+END_SRC
-** Themes
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-themes
-    :ensure t
-    :config
-    (load-theme 'doom-acario-dark t))
-#+END_SRC
-** Modeline
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :hook (after-init . doom-modeline-mode))
-#+END_SRC
-** Icons
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons
-    :ensure t)
-#+END_SRC
-** Org mode
-*** Org bullets
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-     :ensure t
-     :config
-       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+END_SRC
-*** Org settings
-#+BEGIN_SRC emacs-lisp
-  (setq org-support-shift-select t)
-#+END_SRC
-*** Org capture
-#+BEGIN_SRC emacs-lisp
-  (custom-set-variables
-     '(org-directory "~/org")
-     '(org-default-notes-file (concat org-directory "/notes.org"))
-     '(org-export-html-postamble nil)
-     '(org-startup-folded (quote overview))
-     '(org-startup-indented t))
-
-  (setq org-file-apps
-	    (append '(("\\.pdf\\'" . "zathura %s")) org-file-apps))
-
-  (setq org-todo-keywords
-	    '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE" "CANCELLED")))
-
-  (global-set-key "\C-ca" 'org-agenda)
-
-  (use-package org-ac
-	  :ensure t
-	  :init
-	  (progn
-	    (require 'org-ac)
-	    (org-ac/config-default)))
-
-  (global-set-key (kbd "C-c c") 'org-capture)
-  (setq org-agenda-files (list "~/org/gcal.org"))
-#+END_SRC
-*** Org capture templates
-#+begin_src emacs-lisp
-  (setq org-capture-templates
-  '(("a" "Appointment" entry (file+headline "~/org/gcal.org" "Appointments")
-  "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
-  ("n" "Note" entry (file+headline "~/org/notes.org" "Notes")
-  "* Note %?\n%T")
-  ("l" "Link" entry (file+headline "~/org/links.org" "Links")
-  "* %? %^L %^g \n%T" :prepend t)
-  ("b" "Blog idea" entry (file+headline "~/org/i.org" "Blog Topics:")
-  "* %?\n%T" :prepend t)
-  ("t" "To Do Item" entry (file+headline "~/org/todo.org" "To Do Items")
-  "* %?\n%T" :prepend t)
-  ("j" "Journal" entry (file+datetree "~/org/journal.org")
-  "* %?\nEntered on %U\n %i\n %a")))
-#+end_src
-*** Org GCal
-#+begin_src emacs-lisp
-  (setq package-check-signature nil)
-
-  (use-package org-gcal
-    :ensure t
-    :config
-    (setq org-gcal-client-id "964075760905-4flq0pgl0531kd4j4lqa1jbouef7i5eu.apps.googleusercontent.com"
-    org-gcal-client-secret "8aCAnZglYE3QbwIDon0npjb3"
-    org-gcal-file-alist '(("matthewiashman@gmail.com" . "~/org/gcal.org"))))
-
-  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
-#+end_src
-*** Org capture from external
-#+begin_src emacs-lisp
-  (defadvice org-capture-finalize
-    (after delete-capture-frame activate)
-    "Advise capture-finalize to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-
-  (defadvice org-capture-destroy
-    (after delete-capture-frame activate)
-    "Advise capture-destroy to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-
-  (use-package noflet
-    :ensure t)
-
-  (defun make-capture-frame ()
-    "Create a new frame and run org-capture."
-    (interactive)
-    (make-frame '((name . "capture")))
-    (select-frame-by-name "capture")
-    (delete-other-windows)
-    (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-            (org-capture)))
-#+end_src
-* Modes 
-** IDO
-#+BEGIN_SRC emacs-lisp
-  (setq ido-everywhere t)
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-filename-at-point 'guess)
-  (setq ido-create-new-buffer 'always)
-  (ido-mode t)
-#+END_SRC
-   
-* General packages
-** Try package
-#+BEGIN_SRC emacs-lisp
-  (use-package try
+* Interface tweaks
+   #+BEGIN_SRC emacs-lisp
+     (setq inhibit-startup-message t)
+     (menu-bar-mode -1)
+     (tool-bar-mode -1)
+     (scroll-bar-mode -1)
+     (fset 'yes-or-no-p 'y-or-n-p)
+     (global-set-key (kbd "<f5>") 'revert-buffer)
+     (setq split-width-threshold 1)
+     (global-hl-line-mode t)
+  #+END_SRC
+* Disable mouse
+  #+BEGIN_SRC emacs-lisp
+    (use-package disable-mouse
+      :ensure t
+      :config
+      (global-disable-mouse-mode))
+  #+END_SRC
+* Hungry delete
+  #+begin_src emacs-lisp
+    (use-package hungry-delete
+      :ensure t
+      :config
+      (global-hungry-delete-mode))
+  #+end_src
+* Expand region
+  #+begin_src emacs-lisp
+    (use-package expand-region
+      :ensure t
+      :config
+      (global-set-key (kbd "C-=") 'er/expand-region))
+  #+end_src
+* Undo tree
+  #+BEGIN_SRC emacs-lisp
+    (use-package undo-tree
+      :ensure t
+      :init
+      (global-undo-tree-mode))
+  #+END_SRC
+* Projectile
+  #+begin_src emacs-lisp
+    (use-package projectile
+      :ensure t
+      :config
+      (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+      (projectile-mode +1))
+  #+end_src
+* Dashboard
+  #+begin_src emacs-lisp
+    (use-package dashboard
+      :ensure t
+      :init
+      (progn
+	(setq dashboard-items '((recents . 5)
+				(projects . 5))))
+      (setq dashboard-set-file-icons t)
+      (setq dashboard-set-heading-icons t)
+      (setq dashboard-startup-banner "/usr/share/icons/hicolor/128x128/apps/emacs.png")
+      :config
+      (dashboard-setup-startup-hook)
+      (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
+  #+end_src
+* Try
+  #+BEGIN_SRC emacs-lisp
+    (use-package try
       :ensure t)
-#+END_SRC
-   
-** Which key
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :ensure t
-    :config (which-key-mode))
-#+END_SRC
-
-** Hydra
-#+begin_src emacs-lisp
-  (use-package hydra
-    :ensure t)
-
-  ;; Hydra for modes that toggle on and off
-  (global-set-key
-  (kbd "C-x t")
-  (defhydra toggle (:color blue)
-    "toggle"
-    ("a" abbrev-mode "abbrev")
-    ("s" flyspell-mode "flyspell")
-    ("d" toggle-debug-on-error "debug")
-    ("c" fci-mode "fCi")
-    ("f" auto-fill-mode "fill")
-    ("t" toggle-truncate-lines "truncate")
-    ("w" whitespace-mode "whitespace")
-    ("q" nil "cancel")))
-
-  ;; Hydra for navigation
-  (global-set-key
-   (kbd "C-x j")
-   (defhydra gotoline
-     ( :pre (linum-mode 1)
-            :post (linum-mode -1))
-     "goto"
-     ("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
-     ("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
-     ("m" (lambda () (interactive)(move-to-window-line-top-bottom)) "middle")
-     ("e" (lambda () (interactive)(end-of-buffer)) "end")
-     ("c" recenter-top-bottom "recenter")
-     ("n" next-line "down")
-     ("p" (lambda () (interactive) (forward-line -1))  "up")
-     ("g" goto-line "goto-line")))
-#+end_src
-** Projectile
-#+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :ensure t
-    :config
-    (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
-    (projectile-mode +1))
-#+END_SRC
-** Dashboard
-#+BEGIN_SRC emacs-lisp
-  (use-package dashboard
-    :ensure t
-    :init
-    (progn
-    (setq dashboard-items '((recents . 5)
-    (projects . 5))))
-    (setq dashboard-set-file-icons t)
-    (setq dashboard-set-heading-icons t)
-    :config
-    (dashboard-setup-startup-hook)
-    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
-#+END_SRC
-** Treemacs
-#+BEGIN_SRC emacs-lisp
-  (use-package treemacs
-    :ensure t
-    :bind
-    (:map global-map
-    ([F8] . treemacs)
-    ("C-<f8>" . treemacs-select-window))
-    :config
-    (setq treemacs-is-never-other-window t))
-#+END_SRC
-
-** Treemacs Projectile
-#+BEGIN_SRC emacs-lisp
-  (use-package treemacs-projectile
-    :after treemacs projectile
-    :ensure t)
-#+END_SRC
-** Ace window
-#+BEGIN_SRC emacs-lisp
-  (use-package ace-window
-    :ensure t
-    :init
-    (progn
-      (global-set-key [remap other-window] 'ace-window)
+  #+END_SRC
+* Which
+  #+BEGIN_SRC emacs-lisp
+    (use-package which-key
+      :ensure t
+      :config
+      (which-key-mode))
+  #+END_SRC
+* Ace window
+  #+BEGIN_SRC emacs-lisp
+    (use-package ace-window
+      :ensure t
+      :init
+      (progn
+	(global-set-key [remap other-window] 'ace-window))
       (custom-set-faces
        '(aw-leading-char-face
-         ((t (:inherit ace-jump-face-foreground :height 3.0)))))))
-#+END_SRC
-** Swiper search
-#+BEGIN_SRC emacs-lisp
-  (use-package counsel
+	 ((t (:inherit ace-jump-face-foreground :height 3.0))))))
+   #+END_SRC
+* Org mode
+** Org bullets
+  #+BEGIN_SRC emacs-lisp
+    (use-package org-bullets
+      :ensure t
+      :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  #+END_SRC
+** Org capture
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-c c")
+		     'org-capture)
+
+     (setq org-agenda-files (list "~/orgfiles/gcal.org"
+				  "~/orgfiles/i.org"))
+
+     (setq org-capture-templates
+	   '(("a" "Appointment" entry (file  "~/orgfiles/gcal.org" "Appointments")
+	      "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
+	     ("n" "Note" entry (file+headline "~/orgfiles/notes.org" "Notes")
+	      "* Note %?\n%T")
+	     ("l" "Link" entry (file+headline "~/orgfiles/links.org" "Links")
+	      "* %? %^L %^g \n%T" :prepend t)
+	     ("b" "Blog idea" entry (file+headline "~/orgfiles/i.org" "Blog Topics:")
+	      "* %?\n%T" :prepend t)
+	     ("t" "To Do Item" entry (file+headline "~/orgfiles/i.org" "To Do Items")
+	      "* %?\n%T" :prepend t)
+	     ("j" "Journal" entry (file+datetree "~/orgfiles/journal.org")
+	      "* %?\nEntered on %U\n  %i\n  %a")))
+
+     (defadvice org-capture-finalize
+	 (after delete-capture-frame activate)
+       "Advise capture-finalize to close the frame"
+       (if (equal "capture" (frame-parameter nil 'name))
+	   (delete-frame)))
+
+     (defadvice org-capture-destroy
+	 (after delete-capture-frame activate)
+       "Advise capture-destroy to close the frame"
+       (if (equal "capture" (frame-parameter nil 'name))
+	   (delete-frame)))
+
+     (use-package noflet
+       :ensure t )
+     (defun make-capture-frame ()
+       "Create a new frame and run org-capture."
+       (interactive)
+       (make-frame '((name . "capture")))
+       (select-frame-by-name "capture")
+       (delete-other-windows)
+       (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+	 (org-capture)))
+   #+END_SRC
+** Org GCal
+   #+BEGIN_SRC emacs-lisp
+     (setq package-check-signature nil)
+
+     (use-package org-gcal
        :ensure t
-       :bind
-       (("M-y" . counsel-yank-pop)
-        :map ivy-minibuffer-map
-        ("M-y" . ivy-next-line)))
+       :config
+       (setq org-gcal-client-id "oauth 2.0 client ID"
+	     org-gcal-client-secret "client secret"
+	     org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org"))))
 
-  (use-package ivy
-    :ensure t
-    :diminish (ivy-mode)
-    :bind (("C-x b" . ivy-switch-buffer))
-    :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-display-style 'fancy))
+     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+   #+END_SRC
+** Org reveal
+   #+BEGIN_SRC emacs-lisp
+     (use-package ox-reveal
+       :ensure ox-reveal)
 
-  (use-package swiper
-    :ensure t
-    :bind (("C-s" . swiper)
-           ("C-r" . swiper)
-           ("C-c C-r" . ivy-resume)
-           ("M-x" . counsel-M-x)
-           ("C-x C-f" . counsel-find-file))
-    :config
-    (progn
-      (ivy-mode 1)
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-display-style 'fancy)
-      (setq enable-recursive-minibuffers t)
-      ;; enable this if you want `swiper' to use it
-      ;; (setq search-default-mode #'char-fold-to-regexp)
-      ;; (global-set-key "\C-s" 'swiper)
-      ;; (global-set-key (kbd "C-c C-r") 'ivy-resume)
-      ;; (global-set-key (kbd "<f6>") 'ivy-resume)
-      ;; (global-set-key (kbd "M-x") 'counsel-M-x)
-      ;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-      ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-      ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-      ;; (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
-      ;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
-      ;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-      ;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-      ;; (global-set-key (kbd "C-c g") 'counsel-git)
-      ;; (global-set-key (kbd "C-c j") 'counsel-git-grep)
-      ;; (global-set-key (kbd "C-c k") 'counsel-ag)
-      ;; (global-set-key (kbd "C-x l") 'counsel-locate)
-      ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-      ;; (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-      (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)))
-#+END_SRC
+     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+     (setq org-reveal-mathjax t)
 
-** Disable mouse
-#+BEGIN_SRC emacs-lisp
-(use-package disable-mouse
-  :ensure t
-  :config
-  (global-disable-mouse-mode))
-#+END_SRC
-   
-** Expand region
-#+BEGIN_SRC emacs-lisp
-(use-package expand-region
-  :ensure t
-  :bind
-    ("C-=" . er/expand-region)
-    ("C--" . er/contract-region))
-#+END_SRC
-** Centaur tabs
-#+BEGIN_SRC emacs-lisp
-  (use-package centaur-tabs
-    :ensure t
-    :config
-    (setq centaur-tabs-set-bar 'over 
-          centaur-tabs-set-icons t
-          centaur-tabs-gray-out-icons 'buffer
-          centaur-tabs-height 24
-          centaur-tabs-set-modified-marker t
-          centaur-tabs-modified-marker "*")
-          (centaur-tabs-mode t)
-          :bind
-          ("C-<next>" . centaur-tabs-forward)
-          ("C-<prior>" . centaur-tabs-backward))
-#+END_SRC
-** Company autocomplete
-#+BEGIN_COMMENT
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :ensure t
-    :init
-    (add-hook 'after-init-hook 'global-company-mode))
-#+END_SRC
-#+END_COMMENT
-** Auto-complete autocomplete
-#+begin_src emacs-lisp
-(use-package auto-complete
+     (use-package htmlize
+       :ensure t)
+   #+END_SRC
+* Elfeed
+  #+BEGIN_SRC emacs-lisp
+    (use-package elfeed
+      :ensure t
+      :bind (:map elfeed-search-mode-map
+		  ("q" . bjm/elfeed-save-db-and-bury)
+		  ("Q" . bjm/elfeed-save-db-and-bury)
+		  ("m" . elfeed-toggle-star)
+		  ("M" . elfeed-toggle-star)))
+
+    (use-package elfeed-goodies
+      :ensure t
+      :config
+      (elfeed-goodies/setup))
+
+    (use-package elfeed-org
+      :ensure t
+      :config
+      (elfeed-org)
+      (setq rmh-elfed-org-files (list "~/orgfiles/elfeed.org")))
+
+    (setq elfeed-db-directory "~/elfeeddb")
+
+    (defun elfeed-mark-all-as-read ()
+      (interactive)
+      (mark-whole-buffer)
+      (elfeed-search-untag-all-unread))
+
+    ;;functions to support syncing .elfeed between machines
+    ;;makes sure elfeed reads index from disk before launching
+    (defun bjm/elfeed-load-db-and-open ()
+      "Wrapper to load the elfeed db from disk before opening"
+      (interactive)
+      (elfeed-db-load)
+      (elfeed)
+      (elfeed-search-update--force))
+
+    ;;write to disk when quiting
+    (defun bjm/elfeed-save-db-and-bury ()
+      "Wrapper to save the elfeed db to disk before burying buffer"
+      (interactive)
+      (elfeed-db-save)
+      (quit-window))
+
+    (defalias 'elfeed-toggle-star
+      (elfeed-expose #'elfeed-search-toggle-all 'star))
+  #+END_SRC
+* Hydra
+  #+BEGIN_SRC emacs-lisp
+    (use-package hydra
+      :ensure t)
+
+    ;; Hydra for modes that toggle on and off
+    (global-set-key
+     (kbd "C-x t")
+     (defhydra toggle (:color blue)
+       "toggle"
+       ("a" abbrev-mode "abbrev")
+       ("s" flyspell-mode "flyspell")
+       ("d" toggle-debug-on-error "debug")
+       ("c" fci-mode "fCi")
+       ("f" auto-fill-mode "fill")
+       ("t" toggle-truncate-lines "truncate")
+       ("w" whitespace-mode "whitespace")
+       ("q" nil "cancel")))
+
+    ;; Hydra for navigation
+    (global-set-key
+     (kbd "C-x j")
+     (defhydra gotoline
+       ( :pre (linum-mode 1)
+	      :post (linum-mode -1))
+       "goto"
+       ("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
+       ("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
+       ("m" (lambda () (interactive)(move-to-window-line-top-bottom)) "middle")
+       ("e" (lambda () (interactive)(end-of-buffer)) "end")
+       ("c" recenter-top-bottom "recenter")
+       ("n" next-line "down")
+       ("p" (lambda () (interactive) (forward-line -1))  "up")
+       ("g" goto-line "goto-line")))
+
+    ;; Hydra for some org-mode stuff
+    (global-set-key
+     (kbd "C-c t")
+     (defhydra hydra-global-org (:color blue)
+       "Org"
+       ("t" org-timer-start "Start Timer")
+       ("s" org-timer-stop "Stop Timer")
+       ("r" org-timer-set-timer "Set Timer") ; This one requires you be in an orgmode doc, as it sets the timer for the header
+       ("p" org-timer "Print Timer") ; output timer value to buffer
+       ("w" (org-clock-in '(4)) "Clock-In") ; used with (org-clock-persistence-insinuate) (setq org-clock-persist t)
+       ("o" org-clock-out "Clock-Out") ; you might also want (setq org-log-note-clock-out t)
+       ("j" org-clock-goto "Clock Goto") ; global visit the clocked task
+       ("c" org-capture "Capture") ; Don't forget to define the captures you want http://orgmode.org/manual/Capture.html
+       ("l" (or )rg-capture-goto-last-stored "Last Capture")))
+  #+END_SRC
+* Ido mode
+  #+BEGIN_SRC emacs-lisp
+  ;; (setq ido-enable-flex-matching t)
+  ;; (setq ido-everywhere t)
+  ;; (ido-mode 1)
+  ;; #(defalias 'list-buffers 'ibuffer)
+  #+END_SRC
+* Swiper search
+  #+BEGIN_SRC emacs-lisp
+    (use-package counsel
+      :ensure t
+      :bind
+      (("M-y" . counsel-yank-pop)
+       :map ivy-minibuffer-map
+       ("M-y" . ivy-next-line)))
+
+    (use-package swiper
+      :ensure try
+      :bind (("C-s" . swiper)
+	     ("C-r" . swiper)
+	     ("C-c C-r" . ivy-resume)
+	     ("M-x" . counsel-M-x)
+	     ("C-x C-f" . counsel-find-file))
+      :config
+      (progn
+	(ivy-mode 1)
+	(setq ivy-use-virtual-buffers t)
+
+	(setq ivy-display-style 'fancy)
+	(setq enable-recursive-minibuffers t)
+	;; (global-set-key "\C-s" 'swiper)
+	;; (global-set-key (kbd "C-c C-r") 'ivy-resume)
+	;; (global-set-key (kbd "<f6>") 'ivy-resume)
+	;; (global-set-key (kbd "M-x") 'counsel-M-x)
+	;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+	;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+	;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+	;; (global-set-key (kbd "<f1> l") 'counsel-load-library)
+	;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+	;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+	;; (global-set-key (kbd "C-c g") 'counsel-git)
+	;; (global-set-key (kbd "C-c j") 'counsel-git-grep)
+	;; (global-set-key (kbd "C-c k") 'counsel-ag)
+	;; (global-set-key (kbd "C-x l") 'counsel-locate)
+	;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+	(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)))
+  #+END_SRC
+* Auto-complete
+  #+BEGIN_SRC emacs-lisp
+  (use-package auto-complete
   :ensure t
   :init
   (progn
     (ac-config-default)
     (global-auto-complete-mode t)))
-#+end_src
-** Undo tree
-#+BEGIN_SRC emacs-lisp
-  (use-package undo-tree
-    :ensure t
-    :init
-    (global-undo-tree-mode))
-#+END_SRC
-** Flycheck
-#+BEGIN_SRC emacs-lisp
-   (use-package flycheck
-     :ensure t
-     :init
-     (global-flycheck-mode t))
-#+END_SRC
-** Yasnippet
-#+begin_src emacs-lisp
-  (use-package yasnippet
-    :ensure t
-    :init
-    (yas-global-mode 1))
-#+end_src
-** IEdit
-#+begin_src emacs-lisp
-   (use-package iedit
-     :ensure t)
-#+end_src
-** Elfeed
-#+begin_src emacs-lisp
-  (setq elfeed-db-directory "~/elfeeddb")
+  #+END_SRC
+* Avy movement
+  #+BEGIN_SRC emacs-lisp
+    (use-package avy
+      :ensure
+      :bind ("M-s" . avy-goto-char))
+  #+END_SRC
+* Theming
+** Doom emacs
+  #+BEGIN_SRC emacs-lisp
+    (use-package doom-themes
+      :ensure t
+      :config (load-theme 'doom-acario-dark t))
 
-  (defun elfeed-mark-all-as-read ()
-    (interactive)
-    (mark-whole-buffer)
-    (elfeed-search-untag-all-unread))
+    (use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode)
+      :init
+      (progn
+	(setq doom-modeline-icon t)))
+  #+END_SRC
+** Icons
+   #+BEGIN_SRC emacs-lisp
+     (use-package all-the-icons
+       :ensure t)
+   #+END_SRC
+* Better Shell
+  #+BEGIN_SRC emacs-lisp
+    (use-package better-shell
+      :ensure t
+      :bind (("C-'" . better-shell-shell)
+	     ("C-;" . better-shell-remote-open)))
+  #+END_SRC
+* Yasnippet
+  #+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :init
+      (yas-global-mode 1))
+  #+END_SRC
+* Markdown
+  #+begin_src emacs-lisp
+    (use-package markdown-mode
+      :ensure t)
 
-  ;;functions to support syncing .elfeed between machines
-  ;;makes sure elfeed reads index from disk before launching
-  (defun bjm/elfeed-load-db-and-open ()
-    "Wrapper to load the elfeed db from disk before opening"
-    (interactive)
-    (elfeed-db-load)
-    (elfeed)
-    (elfeed-search-update--force))
+    (use-package markdown-mode+
+      :ensure t)
+  #+end_src
+* Web mode
+  #+begin_src emacs-lisp
+    (use-package web-mode
+      :ensure t
+      :config
+      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+      (setq web-mode-engines-alist
+	    '(("django"    . "\\.html\\'")))
+      (setq web-mode-ac-sources-alist
+	    '(("css" . (ac-source-css-property))
+	      ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+      (with-eval-after-load 'web-mode
+	(define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer))
 
-  ;;write to disk when quiting
-  (defun bjm/elfeed-save-db-and-bury ()
-    "Wrapper to save the elfeed db to disk before burying buffer"
-    (interactive)
-    (elfeed-db-save)
-    (quit-window))
-
-  (defalias 'elfeed-toggle-star
-    (elfeed-expose #'elfeed-search-toggle-all 'star))
-
-  (use-package elfeed
-    :ensure t
-    :bind (:map elfeed-search-mode-map
-                ("q" . bjm/elfeed-save-db-and-bury)
-                ("Q" . bjm/elfeed-save-db-and-bury)
-                ("m" . elfeed-toggle-star)
-                ("M" . elfeed-toggle-star)))
-
-  (use-package elfeed-goodies
-    :ensure t
-    :config
-    (elfeed-goodies/setup))
-
-  (use-package elfeed-org
-    :ensure t
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
-#+end_src
-** Elfeed hydra
-#+begin_src emacs-lisp
-  `(defhydra mz/hydra-elfeed ()
-     "filter"
-     ("c" (elfeed-search-set-filter "@6-months-ago +cs") "cs")
-     ("e" (elfeed-search-set-filter "@6-months-ago +emacs") "emacs")
-     ("d" (elfeed-search-set-filter "@6-months-ago +education") "education")
-     ("*" (elfeed-search-set-filter "@6-months-ago +star") "Starred")
-     ("M" elfeed-toggle-star "Mark")
-     ("A" (elfeed-search-set-filter "@6-months-ago") "All")
-     ("T" (elfeed-search-set-filter "@1-day-ago") "Today")
-     ("Q" bjm/elfeed-save-db-and-bury "Quit Elfeed" :color blue)
-     ("q" nil "quit" :color blue))
-#+end_src
-* Making
-** Reveal.js presentations
-#+BEGIN_SRC emacs-lisp
-  (use-package htmlize
-    :ensure t)
-
-  (use-package ox-reveal
-    :ensure ox-reveal)
-
-  (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
-  (setq org-reveal-mathjax t)
-#+END_SRC
-* Shell
-** Better
-#+begin_src emacs-lisp
-  (use-package better-shell
-    :ensure t
-    :bind (("C-'" . better-shell-shell)
-           ("C-;" . better-shell-remote-open)))
-#+end_src
-* Better
-#+begin_src emacs-lisp
-  (use-package better-shell
-    :ensure t
-    :bind (("C-'" . better-shell-shell)
-           ("C-;" . better-shell-remote-open)))
-#+end_src
-* Web Dev
-** Web Mode
-#+begin_src emacs-lisp
-  (use-package web-mode
-    :ensure t
-    :config
-    (add-to-list  'auto-mode-alist '("\\.html\\'" . web-mode))
-    (setq web-mode-engines-alist
-    '(("django" . "\\.html\\")))
-    (setq web-mode-ac-sources-alist
-    '(("css" . (ac-sources-css-property))
-    ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
-    (setq web-mode-enable-auto-closing t))
-#+end_src
-* Javascript
-** RJSX Mode
-#+BEGIN_SRC emacs-lisp
-  (use-package rjsx-mode
-    :ensure t
-    :mode "\\.js\\'")
-#+END_SRC
-** Tide
-#+BEGIN_SRC emacs-lisp
-  (defun setup-tilde-mode()
-    "Setup function for tide."
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (tide-hl-identifier-mode +1)
-    (auto-complete-mode +1))
-
-  (use-package tide
-    :ensure t
-    :after (rjsx-mode auto-complete flycheck)
-    :hook (rjsx-mode . setup-tide-mode))
-#+END_SRC   
-** Prettier
-#+BEGIN_SRC emacs-lisp
-  (use-package prettier-js
-    :ensure t
-    :after (rjsx-mode)
-    :hook (rjsx-mode . prettier-js-mode))
-#+END_SRC
+      (setq web-mode-enable-auto-closing t)
+      (setq web-mode-enable-auto-quoting t))
+  #+end_src
 * Python
-** Python 3
-#+BEGIN_SRC emacs-lisp
-  (setq py-python-command "python3")
-  (setq python-shell-interpreter "python3")
-#+END_SRC
-** Virtualenv
-#+begin_src emacs-lisp
-  (use-package virtualenvwrapper
-    :ensure t
-    :config
-    (venv-initialize-interactive-shells)
-    (venv-initialize-eshell))
-#+end_src
-** Jedi (Company)
-#+begin_comment
-#+begin_src emacs-lisp
-  (use-package company-jedi
-    :ensure t
-    :config
-    (add-to-list 'company-backends 'company-jedi))
-#+end_src
-#+end_comment
+** Elpy
+   #+BEGIN_SRC emacs-lisp
+     (use-package elpy
+       :ensure t
+       :config
+       (elpy-enable))
+     (setq elpy-rpc-python-command "python3")
+   #+END_SRC
 ** Jedi
-#+begin_src emacs-lisp
-  (use-package jedi
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'jedi:setup)
-    (add-hook 'python-mode-hook 'jedi:ac-setup))
-#+end_src
+   #+BEGIN_SRC emacs-lisp
+     (use-package jedi
+       :ensure t
+       :config
+       (add-hook 'python-mode-hook 'jedi:setup)
+       (add-hook 'python-mode-hook 'jedi:ac-setup))
+   #+END_SRC
+** Python 3
+   #+BEGIN_SRC emacs-lisp
+     (setq py-python-command "python3")
+     (setq python-shell-interpreter "python3")
+   #+END_SRC
+** Virtualenv
+   #+BEGIN_SRC emacs-lisp
+     (use-package virtualenvwrapper
+       :ensure t
+       :config
+       (venv-initialize-interactive-shells)
+       (venv-initialize-eshell))
+   #+END_SRC
+* Flycheck
+  #+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+		 :ensure t
+		 :init
+		 (global-flycheck-mode t))
+  #+END_SRC

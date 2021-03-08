@@ -144,9 +144,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # set +x
 # exec 2>&3 3>&-
 
-# added by Anaconda3 installer
-export PATH="$PATH:/home/smash/anaconda3/bin"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/smash/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"

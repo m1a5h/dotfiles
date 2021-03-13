@@ -18,7 +18,7 @@ alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empt
 # package management laziness
 alias up2='sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
 #alias up2='sudo dnf update && sudo dnf clean all'
-alias get='sudo apt install --no-install-recommends'
+function get() { sudo snap install $1 --$2 || sudo apt install --no-install-recommends $1; }
 #alias get='sudo dnf install'
 alias rget='sudo apt install --reinstall --no-install-recommends'
 alias hld='sudo apt-mark hold'

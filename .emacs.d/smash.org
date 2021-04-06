@@ -350,6 +350,14 @@ Smashing config
       :bind (("C-'" . better-shell-shell)
 	     ("C-;" . better-shell-remote-open)))
   #+END_SRC
+* Eshell highlighting
+   #+BEGIN_SRC emacs-lisp
+     (use-package eshell-syntax-highlighting
+       :after eshell
+       :ensure t
+       :config
+       (eshell-syntax-highlighting-global-mode +1))
+   #+END_SRC
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet

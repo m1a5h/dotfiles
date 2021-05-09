@@ -297,7 +297,7 @@
     <!-- Open Terminology -->
     <keybind key="W-T">
       <action name="Execute">
-        <command>terminology</command>
+        <command>alacritty</command>
       </action>
     </keybind>
     <!-- Open dmenu -->

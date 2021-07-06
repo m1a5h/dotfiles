@@ -174,7 +174,7 @@ Smashing config
 		  ("Q" . bjm/elfeed-save-db-and-bury)
 		  ("m" . elfeed-toggle-star)
 		  ("M" . elfeed-toggle-star)))
-
+		  
     (use-package elfeed-goodies
       :ensure t
       :config
@@ -372,6 +372,27 @@ Smashing config
 
     (use-package markdown-mode+
       :ensure t)
+
+    (eval-after-load "markdown-mode"
+      '(defalias 'markdown-add-xhtml-header-and-footer 'as/markdown-add-xhtml-header-and-footer))
+
+    (defun as/markdown-add-xhtml-header-and-footer (title)
+      "Wrap XHTML header and footer with given TITLE around current buffer."
+      (goto-char (point-min))
+      (insert "<!DOCTYPE html>\n"
+	      "<html>\n"
+	      "<head>\n<title>")
+      (insert title)
+      (insert "</title>\n")
+      (insert "<meta charset=\"utf-8\" />\n")
+      (when (> (length markdown-css-paths) 0)
+	(insert (mapconcat 'markdown-stylesheet-link-string markdown-css-paths "\n")))
+      (insert "\n</head>\n\n"
+	      "<body>\n\n")
+      (goto-char (point-max))
+      (insert "\n"
+	      "</body>\n"
+	      "</html>\n"))
   #+end_src
 * Web mode
   #+begin_src emacs-lisp

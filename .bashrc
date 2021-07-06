@@ -165,3 +165,6 @@ if [ -f '/home/smash/google-cloud-sdk/path.bash.inc' ]; then . '/home/smash/goog
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smash/google-cloud-sdk/completion.bash.inc'; fi
+
+# Set EDITOR and VISUAL variables to Emacs if it is installed and otherwise whatever vi is aliased to
+[[ $(which emacs) ]] && export EDITOR=emacs VISUAL=emacs || export EDITOR=${BASH_ALIASES[vi]} VISUAL=${BASH_ALIASES[vi]}

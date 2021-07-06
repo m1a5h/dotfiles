@@ -11,3 +11,5 @@ lg = !"git lg1"
 	helper = cache --timeout=7200
 [core]
 	editor = emacs
+[pull]
+	ff = only

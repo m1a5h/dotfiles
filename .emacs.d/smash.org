@@ -370,9 +370,6 @@ Smashing config
     (use-package markdown-mode
       :ensure t)
 
-    (use-package markdown-mode+
-      :ensure t)
-
     (eval-after-load "markdown-mode"
       '(defalias 'markdown-add-xhtml-header-and-footer 'as/markdown-add-xhtml-header-and-footer))
 

@@ -18,7 +18,7 @@ alias hf='h | grep '
 alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empty' 
 
 # package management laziness
-alias up2='sudo snap refresh && sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
+alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
 #alias up2='sudo dnf update && sudo dnf clean all'
 function get() { sudo snap install $1 --$2 || sudo apt install --no-install-recommends $1; }
 #alias get='sudo dnf install'

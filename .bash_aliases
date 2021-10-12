@@ -32,7 +32,7 @@ alias dnfs='dnf search'
 alias sar='sudo apt remove'
 
 # remote access the Pi
-alias rpi='ssh pi@raspberrypi'
+alias rpi='ssh raspberrypi'
 alias rpix='rpi -X'
 alias vpi='vncviewer raspberrypi:1'
 

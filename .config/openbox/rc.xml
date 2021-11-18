@@ -322,7 +322,7 @@
     <!-- Connect to Sony Bluetooth Earphones-->
     <keybind key="W-W">
       <action name="Execute">
-	<command>bluetoothctl connect 90:7A:58:13:E7:BA</command>
+	<command>bluetoothctl connect 74:45:CE:AF:D8:8C</command>
       </action>
     </keybind>
     <!-- Disconnect all Bluetooth-->

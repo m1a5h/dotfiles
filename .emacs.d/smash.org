@@ -3,7 +3,7 @@
 Smashing config
 
 * Interface tweaks
-   #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
      (setq inhibit-startup-message t)
      (menu-bar-mode -1)
      (tool-bar-mode -1)
@@ -78,7 +78,7 @@ Smashing config
 	  (apply orig-fun args)))
 
       (advice-add 'file-acl :around 'fp/ignore-wsl-acls))
-  #+end_src
+  #+end_src 
 * Try
   #+BEGIN_SRC emacs-lisp
     (use-package try
@@ -101,15 +101,15 @@ Smashing config
       (custom-set-faces
        '(aw-leading-char-face
 	 ((t (:inherit ace-jump-face-foreground :height 3.0))))))
-   #+END_SRC
+  #+END_SRC
 * Org mode
 ** Org bullets
-  #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
     (use-package org-bullets
       :ensure t
       :config
       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-  #+END_SRC
+   #+END_SRC
 ** Org capture
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c c")
@@ -337,11 +337,11 @@ Smashing config
   #+BEGIN_SRC emacs-lisp
     (use-package avy
       :ensure
-      :bind ("M-s" . avy-goto-char))
+   
   #+END_SRC
 * Theming
 ** Doom emacs
-  #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
     (use-package doom-themes
       :ensure t
       :config (load-theme 'doom-acario-dark t))
@@ -352,7 +352,7 @@ Smashing config
       :init
       (progn
 	(setq doom-modeline-icon t)))
-  #+END_SRC
+   #+END_SRC
 ** Icons
    #+BEGIN_SRC emacs-lisp
      (use-package all-the-icons
@@ -366,13 +366,13 @@ Smashing config
 	     ("C-;" . better-shell-remote-open)))
   #+END_SRC
 * Eshell highlighting
-   #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
      (use-package eshell-syntax-highlighting
        :after eshell
        :ensure t
        :config
        (eshell-syntax-highlighting-global-mode +1))
-   #+END_SRC
+  #+END_SRC
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
@@ -460,4 +460,3 @@ Smashing config
 		 :init
 		 (global-flycheck-mode t))
   #+END_SRC
-

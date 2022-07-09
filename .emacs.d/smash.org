@@ -59,7 +59,9 @@ Smashing config
 				(projects . 5))))
       (setq dashboard-set-file-icons t)
       (setq dashboard-set-heading-icons t)
-      (setq dashboard-startup-banner "/usr/share/icons/hicolor/128x128/apps/emacs.png")
+      (if (eq system-type 'windows-nt)
+	  (setq dashboard-startup-banner "C:/Program Files/emacs/share/icons/hicolor/128x128/apps/emacs.png")
+	(setq dashboard-startup-banner "/usr/share/icons/hicolor/128x128/apps/emacs.png"))
       :config
       (dashboard-setup-startup-hook)
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))

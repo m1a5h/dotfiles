@@ -66,6 +66,19 @@ Smashing config
       (dashboard-setup-startup-hook)
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
   #+end_src
+* Fix WSL file ACL
+  #+begin_src emacs-lisp
+    (when (eq system-type 'windows-nt)
+      (defun fp/ignore-wsl-acls (orig-fun &rest args)
+	"Ignore ACLs on WSL. WSL does not provide an ACL, but emacs
+    expects there to be one before saving any file. Without this
+    advice, files on WSL can not be saved."
+	(if (or (string-match-p "^//wsl\$/" (car args)) (string-match-p "^l:/" (car args)))
+	    (progn (message "ignoring wsl acls") "")
+	  (apply orig-fun args)))
+
+      (advice-add 'file-acl :around 'fp/ignore-wsl-acls))
+  #+end_src
 * Try
   #+BEGIN_SRC emacs-lisp
     (use-package try
@@ -447,3 +460,4 @@ Smashing config
 		 :init
 		 (global-flycheck-mode t))
   #+END_SRC
+

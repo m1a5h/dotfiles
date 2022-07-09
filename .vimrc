@@ -51,3 +51,6 @@ nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " use 'jk' for Escape
 inoremap jk <Esc>
+ 
+" Use template when opening new HTML file
+autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel

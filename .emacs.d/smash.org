@@ -460,3 +460,9 @@ Smashing config
 		 :init
 		 (global-flycheck-mode t))
   #+END_SRC
+* Windows startup
+  #+BEGIN_SRC emacs-lisp
+    (if (eq system-type 'windows-nt)
+	(setq default-directory "C:/Users/smash")
+      (set-language-environment "UTF-8"))
+  #+END_SRC

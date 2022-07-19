@@ -171,3 +171,6 @@ if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smas
 
 # Symbolic link ~/winhome to %USERPROFILE% (C:\Users\<username>) if in WSL
 [[ ! -L $HOME/winhome && $(uname -r) =~ "WSL" ]] && ln -s /mnt/c/Users/$(whoami) $HOME/winhome
+
+# Symbolic link ~/myfiles to MyFiles on ChromeOS (/mnt/chromeos/MyFiles) in Crostini on ChromeOS
+[[ ! -L $HOME/myfiles && $(uname -n) == "penguin" ]] && ln -s /mnt/chromeos/MyFiles/ $HOME/myfiles

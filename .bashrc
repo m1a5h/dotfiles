@@ -170,4 +170,4 @@ if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smas
 [[ $(which emacs) ]] && export EDITOR=emacs VISUAL=emacs || export EDITOR=${BASH_ALIASES[vi]} VISUAL=${BASH_ALIASES[vi]}
 
 # Symbolic link ~/winhome to %USERPROFILE% (C:\Users\<username>) if in WSL
-[[ $(uname -r) =~ "WSL" ]] && ln -s /mnt/c/Users/$(whoami) $HOME/winhome 
+[[ ! -L $HOME/winhome && $(uname -r) =~ "WSL" ]] && ln -s /mnt/c/Users/$(whoami) $HOME/winhome

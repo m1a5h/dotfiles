@@ -30,6 +30,7 @@ alias sai='sudo apt install'
 alias apts='aptitude search'
 alias dnfs='dnf search'
 alias sar='sudo apt remove'
+alias pipup="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
 # remote access the Pi
 alias rpi='ssh raspberrypi'

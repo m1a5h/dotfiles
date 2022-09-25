@@ -13,3 +13,5 @@ lg = !"git lg1"
 	editor = emacs
 [pull]
 	ff = only
+[url "git@github.com:"]
+	insteadOf = https://github.com/

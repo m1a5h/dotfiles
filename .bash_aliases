@@ -30,7 +30,7 @@ alias sai='sudo apt install'
 alias apts='aptitude search'
 alias dnfs='dnf search'
 alias sar='sudo apt remove'
-alias pipup="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+alias pipup="pip list --format=json --outdated | jq -r '.[] | .name+\"==\"+.latest_version' | xargs pip install -U --upgrade"
 
 # remote access the Pi
 alias rpi='ssh raspberrypi'
@@ -113,3 +113,4 @@ function fin () {
 
 # Save startx log into file in home directory
 alias startx='startx > $HOME/startx.log 2>&1'
+

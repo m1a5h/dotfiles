@@ -1,6 +1,6 @@
 alias emacs='emacs -nw' # keep emacs in the terminal window
-[[ $(which nvim) ]] && alias vi='nvim' || alias vi='vim'
-[[ $(which nvim) ]] && alias vim='nvim'
+[[ $(command -v nvim) ]] && alias vi='nvim' || alias vi='vim'
+[[ $(command -v nvim) ]] && alias vim='nvim'
 alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
 alias octave='octave --no-gui' # start GNU Octave REPL on command line

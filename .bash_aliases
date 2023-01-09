@@ -18,18 +18,24 @@ alias hf='h | grep '
 alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empty' 
 
 # package management laziness
-alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
-#alias up2='sudo dnf update && sudo dnf clean all'
-function get() { sudo snap install $1 --$2 || sudo apt install --no-install-recommends $1; }
-#alias get='sudo dnf install'
-alias rget='sudo apt install --reinstall --no-install-recommends'
-alias hld='sudo apt-mark hold'
-alias unhld='sudo apt-mark unhold'
-alias sauce='sudo apt update && sudo apt dist-upgrade && sudo apt-get autoremove'
-alias sai='sudo apt install'
-alias apts='aptitude search'
-alias dnfs='dnf search'
-alias sar='sudo apt remove'
+source /etc/os-release
+if [[ $ID_LIKE -eq "debian" ]]; then
+	alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
+	function get() { sudo snap install $1 --$2 || sudo apt install --no-install-recommends $1; }
+	alias hld='sudo apt-mark hold'
+	alias sar='sudo apt remove'
+	alias unhld='sudo apt-mark unhold'
+	alias sauce='sudo apt update && sudo apt dist-upgrade && sudo apt-get autoremove'
+	alias sai='sudo apt install'
+	alias apts='aptitude search'
+	alias rget='sudo apt install --reinstall --no-install-recommends'
+fi
+if [[ $ID_LIKE =~ "rhel" ]]; then
+	alias up2='sudo dnf update && sudo dnf clean all'
+	alias get='sudo dnf install'
+	alias dnfs='dnf search'
+fi
+
 alias pipup="pip list --format=json --outdated | jq -r '.[] | .name+\"==\"+.latest_version' | xargs pip install -U --upgrade"
 
 # remote access the Pi

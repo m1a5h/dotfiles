@@ -19,7 +19,7 @@ alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empt
 
 # package management laziness
 source /etc/os-release
-if [[ $ID_LIKE -eq "debian" ]]; then
+if [[ "$ID_LIKE" =~ "debian" ]]; then
 	alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
 	function get() { sudo snap install $1 --$2 || sudo apt install --no-install-recommends $1; }
 	alias hld='sudo apt-mark hold'
@@ -30,7 +30,7 @@ if [[ $ID_LIKE -eq "debian" ]]; then
 	alias apts='aptitude search'
 	alias rget='sudo apt install --reinstall --no-install-recommends'
 fi
-if [[ $ID_LIKE =~ "rhel" ]]; then
+if [[ "$ID_LIKE" =~ "rhel" ]]; then
 	alias up2='sudo dnf update && sudo dnf clean all'
 	alias get='sudo dnf install'
 	alias dnfs='dnf search'

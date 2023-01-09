@@ -63,11 +63,24 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+source /etc/os-release
+
+if [[ $id_like =~ "debian" ]]; then
+    if [ "$color_prompt" = yes ]; then
+        ps1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+    else
+        ps1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
 fi
+
+if [[ $id_like =~ "rhel" ]]; then
+    if [ "$color_prompt" = yes ]; then
+        PS1='\[\e[m\][\[\e[m\]\[\e[35m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[m\]]\[\e[m\]\$ '
+    else
+        PS1='\[\e[m\][\[\e[m\]\[\e\u\[\e[m\]\[\e@\[\e[m\]\[\e\h\[\e[m\]:\[\e\w\[\e[m\]\[\e[m\]]\[\e[m\]\$ '
+    fi
+fi
+
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir

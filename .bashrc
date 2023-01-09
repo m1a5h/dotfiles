@@ -65,15 +65,15 @@ fi
 
 source /etc/os-release
 
-if [[ $id_like =~ "debian" ]]; then
+if [[ "$ID_LIKE" =~ "debian" ]]; then
     if [ "$color_prompt" = yes ]; then
-        ps1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
     else
-        ps1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     fi
 fi
 
-if [[ $id_like =~ "rhel" ]]; then
+if [[ "$ID_LIKE" =~ "rhel" ]]; then
     if [ "$color_prompt" = yes ]; then
         PS1='\[\e[m\][\[\e[m\]\[\e[35m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[m\]]\[\e[m\]\$ '
     else

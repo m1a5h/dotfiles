@@ -38,6 +38,10 @@ fi
 
 alias pipup="pip list --format=json --outdated | jq -r '.[] | .name+\"==\"+.latest_version' | xargs pip install -U --upgrade"
 
+# Terraform and Ansible
+alias ans=ansible
+alias tf=terraform
+
 # remote access the Pi
 alias rpi='ssh raspberrypi'
 alias rpix='rpi -X'

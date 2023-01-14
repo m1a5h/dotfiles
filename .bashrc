@@ -77,7 +77,7 @@ if [[ "$ID_LIKE" =~ "rhel" ]]; then
     if [ "$color_prompt" = yes ]; then
         PS1='\[\e[m\][\[\e[m\]\[\e[35m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[m\]]\[\e[m\]\$ '
     else
-        PS1='\[\e[m\][\[\e[m\]\[\e\u\[\e[m\]\[\e@\[\e[m\]\[\e\h\[\e[m\]:\[\e\w\[\e[m\]\[\e[m\]]\[\e[m\]\$ '
+        PS1='[\u@\h:\w]\$ '
     fi
 fi
 

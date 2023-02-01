@@ -460,6 +460,11 @@ Smashing config
        (venv-initialize-interactive-shells)
        (venv-initialize-eshell))
    #+END_SRC
+* Powershell
+  #+BEGIN_SRC emacs-lisp
+    (use-package powershell
+      :ensure t)
+  #+END_SRC
 * Flycheck
   #+BEGIN_SRC emacs-lisp
   (use-package flycheck

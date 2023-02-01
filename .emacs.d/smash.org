@@ -373,6 +373,13 @@ Smashing config
        :config
        (eshell-syntax-highlighting-global-mode +1))
   #+END_SRC
+* Infra As Code
+** Terraform
+   #+BEGIN_SRC emacs-lisp
+     (use-package terraform-mode
+       :ensure t)
+     (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
+   #+END_SRC
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet

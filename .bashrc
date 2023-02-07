@@ -187,6 +187,8 @@ if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smas
 
 # Symbolic link ~/myfiles to MyFiles on ChromeOS (/mnt/chromeos/MyFiles) in Crostini on ChromeOS
 [[ ! -L $HOME/myfiles && $(uname -n) == "penguin" ]] && ln -s /mnt/chromeos/MyFiles/ $HOME/myfiles
+# Symbolic link ~/gdrive to GoogleDrive on ChromeOS (/mnt/chromeos/GoogleDrive) in Crostini on ChromeOS
+[[ ! -L $HOME/gdrive && $(uname -n) == "penguin" ]] && ln -s /mnt/chromeos/GoogleDrive/ $HOME/gdrive
 
 if [[ -f $HOME/.tokens.gpg ]]; then
     gpg --quiet -d .tokens.gpg > .tokens

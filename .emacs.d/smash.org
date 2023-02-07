@@ -162,8 +162,8 @@ Smashing config
      (use-package org-gcal
        :ensure t
        :config
-       (setq org-gcal-client-id "oauth 2.0 client ID"
-	     org-gcal-client-secret "client secret"
+       (setq org-gcal-client-id (getenv "EMACS_GCAL_CLIENTID")
+	     org-gcal-client-secret (getenv "EMACS_GCAL_CLIENTSECRET")
 	     org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org"))))
 
      (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))

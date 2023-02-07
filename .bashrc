@@ -187,3 +187,11 @@ if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smas
 
 # Symbolic link ~/myfiles to MyFiles on ChromeOS (/mnt/chromeos/MyFiles) in Crostini on ChromeOS
 [[ ! -L $HOME/myfiles && $(uname -n) == "penguin" ]] && ln -s /mnt/chromeos/MyFiles/ $HOME/myfiles
+
+if [[ -f $HOME/.tokens.gpg ]]; then
+    gpg --quiet -d .tokens.gpg > .tokens
+    source .tokens
+    echo "Tokens/API keys available as environment variables: "
+    cat ~/.tokens | cut -d"=" -f1
+    rm .tokens
+fi

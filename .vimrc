@@ -27,6 +27,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'klen/python-mode'
 Plugin 'vim-airline/vim-airline'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'vimwiki/vimwiki'
 
 if iCanHazVundle == 0
   echo "Installing Bundles, please ignore key map error messages"

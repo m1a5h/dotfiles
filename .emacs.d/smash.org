@@ -468,6 +468,15 @@ Smashing config
        (venv-initialize-interactive-shells)
        (venv-initialize-eshell))
    #+END_SRC
+** Anaconda
+   #+begin_src emacs-lisp
+     (use-package anaconda-mode
+       :ensure t
+       :hook (python-mode . anaconda-mode)
+       :config
+       (add-hook 'python-mode-hook 'anaconda-eldoc-hook)
+       (setq python-shell-interpreter (expand-file-name "~/miniconda3/bin/python")))
+   #+end_src
 * Powershell
   #+BEGIN_SRC emacs-lisp
     (use-package powershell

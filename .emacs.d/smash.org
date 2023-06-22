@@ -475,7 +475,8 @@ Smashing config
        :hook (python-mode . anaconda-mode)
        :config
        (add-hook 'python-mode-hook 'anaconda-eldoc-hook)
-       (setq python-shell-interpreter (expand-file-name "~/miniconda3/bin/python")))
+       (setq python-shell-interpreter (expand-file-name "~/miniconda3/bin/python"))
+       (setq exec-path (append exec-path '("~/miniconda3/bin"))))
    #+end_src
 * Powershell
   #+BEGIN_SRC emacs-lisp

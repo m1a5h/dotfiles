@@ -513,6 +513,12 @@ Smashing config
     (use-package powershell
       :ensure t)
   #+END_SRC
+* Vimscript
+  #+begin_src emacs-lisp
+    (use-package vimrc-mode
+      :ensure t
+      :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+  #+end_src
 * Flycheck
   #+BEGIN_SRC emacs-lisp
   (use-package flycheck

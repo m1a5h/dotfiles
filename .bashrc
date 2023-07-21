@@ -191,10 +191,10 @@ if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smas
 [[ ! -L $HOME/gdrive && $(uname -n) == "penguin" ]] && ln -s /mnt/chromeos/GoogleDrive/ $HOME/gdrive
 
 if [[ -f $HOME/.tokens.gpg ]]; then
-    gpg --quiet -d .tokens.gpg > .tokens
-    source .tokens
+    gpg --quiet -d ~/.tokens.gpg > ~/.tokens
+    source ~/.tokens
     echo "Tokens/API keys available as environment variables: "
     cat ~/.tokens | cut -d"=" -f1
-    rm .tokens
+    rm ~/.tokens
 fi
 . "$HOME/.cargo/env"

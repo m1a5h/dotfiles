@@ -492,6 +492,14 @@ Smashing config
        (setq exec-path (append exec-path '("~/miniconda3/bin")))
        (setenv "PATH" (concat "~/miniconda3/bin:" (getenv "PATH"))))
    #+end_src
+** Pytest
+   #+begin_src emacs-lisp
+     (use-package python-pytest
+       :ensure t
+       :config
+       (setq python-pytest-confirm t)
+       (setq pytest-cmd-flags "-x --color=yes"))
+   #+end_src
 * Powershell
   #+BEGIN_SRC emacs-lisp
     (use-package powershell

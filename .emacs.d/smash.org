@@ -366,13 +366,13 @@ Smashing config
        :ensure t
        :config
        (unless (member "all-the-icons" (font-family-list))
-          (all-the-icons-install-fonts t)))
+	 (all-the-icons-install-fonts t)))
 
      (use-package nerd-icons
        :ensure t
        :config
        (unless (member "Nerd Icons" (font-family-list))
-          (nerd-icons-install-fonts t)))
+	 (nerd-icons-install-fonts t)))
    #+END_SRC
 * Better Shell
   #+BEGIN_SRC emacs-lisp

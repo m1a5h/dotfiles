@@ -500,6 +500,14 @@ Smashing config
        (setq python-pytest-confirm t)
        (setq pytest-cmd-flags "-x --color=yes"))
    #+end_src
+* JavaScript
+** JS2 Mode
+   #+begin_src emacs-lisp
+     (use-package js2-mode
+       :ensure t
+       :mode ("\\.js\\'" . js2-mode)
+       :hook (js2-mode . js2-imenu-extras-mode))
+   #+end_src
 * Powershell
   #+BEGIN_SRC emacs-lisp
     (use-package powershell

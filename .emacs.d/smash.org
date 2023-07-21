@@ -489,7 +489,8 @@ Smashing config
        :hook (python-mode-hook . anaconda-eldoc-hook)
        :config
        (setq python-shell-interpreter (expand-file-name "~/miniconda3/bin/python"))
-       (setq exec-path (append exec-path '("~/miniconda3/bin"))))
+       (setq exec-path (append exec-path '("~/miniconda3/bin")))
+       (setenv "PATH" (concat "~/miniconda3/bin:" (getenv "PATH"))))
    #+end_src
 * Powershell
   #+BEGIN_SRC emacs-lisp

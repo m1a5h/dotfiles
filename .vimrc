@@ -48,6 +48,10 @@ set background=dark
 colorscheme delek
 highlight Comment cterm=bold
 
+" Python3
+let g:python3_host_prog = substitute(system('which python'), '\n', '', '')
+let g:ycm_path_to_python_interpreter = substitute(system('which python'), '\n', '', '')
+
 " use ctags with vim
 nnoremap <silent> <Leader> :CtrlPTag<cr>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>

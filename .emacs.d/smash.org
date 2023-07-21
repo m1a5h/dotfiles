@@ -381,6 +381,12 @@ Smashing config
       :bind (("C-'" . better-shell-shell)
 	     ("C-;" . better-shell-remote-open)))
   #+END_SRC
+* Restclient
+  #+begin_src emacs-lisp
+    (use-package restclient
+      :ensure t
+      :mode ("\\.http\\'" . restclient-mode))
+  #+end_src
 * Eshell highlighting
   #+BEGIN_SRC emacs-lisp
      (use-package eshell-syntax-highlighting

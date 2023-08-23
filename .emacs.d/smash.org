@@ -387,6 +387,14 @@ Smashing config
       :ensure t
       :mode ("\\.http\\'" . restclient-mode))
   #+end_src
+* HTTPD
+  #+begin_src emacs-lisp
+    (use-package simple-httpd
+      :ensure t
+      :config
+      (add-to-list 'httpd-mime-types '("html" . "text/html"))
+      (add-to-list 'httpd-mime-types '("json" . "application/json")))
+  #+end_src
 * Eshell highlighting
   #+BEGIN_SRC emacs-lisp
      (use-package eshell-syntax-highlighting

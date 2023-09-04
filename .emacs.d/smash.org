@@ -172,10 +172,11 @@ Smashing config
 				 (split-string (buffer-string) "\n" t))))
 	 (setq org-gcal-client-id (car gcal-credentials)
 	       org-gcal-client-secret (cadr gcal-credentials)
-	       org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org"))))
+	       org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org")))
 	 (org-gcal-reload-client-id-secret))
-     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+       :hook
+       ((org-agenda-mode . org-gcal-sync)
+	(org-capture-after-finalize . org-gcal-sync)))
    #+END_SRC
 ** Org reveal
    #+BEGIN_SRC emacs-lisp

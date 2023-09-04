@@ -164,15 +164,16 @@ Smashing config
    #+END_SRC
 ** Org GCal
    #+BEGIN_SRC emacs-lisp
-     (setq package-check-signature nil)
-
      (use-package org-gcal
        :ensure t
        :config
-       (setq org-gcal-client-id (getenv "EMACS_GCAL_CLIENTID")
-	     org-gcal-client-secret (getenv "EMACS_GCAL_CLIENTSECRET")
-	     org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org"))))
-
+       (let ((gcal-credentials (with-temp-buffer
+				 (insert-file-contents "~/.emacs.d/gcal_creds.txt")
+				 (split-string (buffer-string) "\n" t))))
+	 (setq org-gcal-client-id (car gcal-credentials)
+	       org-gcal-client-secret (cadr gcal-credentials)
+	       org-gcal-file-alist '(("matthewiashman@gmail.com" .  "~/orgfiles/gcal.org"))))
+	 (org-gcal-reload-client-id-secret))
      (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
      (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
    #+END_SRC

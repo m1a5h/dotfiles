@@ -409,6 +409,19 @@ Smashing config
   #+BEGIN_SRC emacs-lisp
     (use-package magit
       :ensure t)
+      :config
+      (defun yadm ()
+	(interactive)
+	(magit-status "/yadm::"))
+
+      (add-to-list 'tramp-methods
+		   '("yadm"
+		     (tramp-login-program "yadm")
+		     (tramp-login-args (("enter")))
+		     (tramp-login-env (("SHELL") ("/bin/bash")))
+		     (tramp-remote-shell "/bin/bash")
+		     (tramp-remote-shell-args ("-c"))))
+      :bind (("C-x y" . yadm)))
   #+END_SRC
 * Infra As Code
 ** Terraform

@@ -408,7 +408,7 @@ Smashing config
 * Magit
   #+BEGIN_SRC emacs-lisp
     (use-package magit
-      :ensure t)
+      :ensure t
       :config
       (defun yadm ()
 	(interactive)

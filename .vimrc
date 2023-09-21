@@ -29,6 +29,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'vimwiki/vimwiki'
 Plugin 'junegunn/vader.vim'
+Plugin 'jceb/vim-orgmode'
 
 if iCanHazVundle == 0
   echo "Installing Bundles, please ignore key map error messages"

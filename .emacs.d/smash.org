@@ -52,9 +52,10 @@ Smashing config
   #+begin_src emacs-lisp
     (use-package projectile
       :ensure t
+      :init (projectile-mode +1)
       :config
-      (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
-      (projectile-mode +1))
+      (define-key projectile-mode-map (kbd "C-x p")
+	'projectile-command-map))
   #+end_src
 * Dashboard
   #+begin_src emacs-lisp

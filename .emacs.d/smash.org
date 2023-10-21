@@ -481,6 +481,11 @@ Smashing config
       (setq web-mode-enable-auto-closing t)
       (setq web-mode-enable-auto-quoting t))
   #+end_src
+* Validate HTML
+  #+begin_src emacs-lisp
+  (use-package validate-html
+    :ensure t)
+  #+end_src
 * Python
 ** Elpy
    #+BEGIN_SRC emacs-lisp

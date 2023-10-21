@@ -190,6 +190,8 @@ if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smas
 # Symbolic link ~/gdrive to GoogleDrive on ChromeOS (/mnt/chromeos/GoogleDrive) in Crostini on ChromeOS
 [[ ! -L $HOME/gdrive && $(uname -n) == "penguin" ]] && ln -s /mnt/chromeos/GoogleDrive/ $HOME/gdrive
 
+# Encrypted tokens by GPG de-crypted and sourced when opening a new shell
+# Use `gpg -c ~/.tokens` to encrypt regenerated tokens
 if [[ -f $HOME/.tokens.gpg ]]; then
     gpg --quiet -d ~/.tokens.gpg > ~/.tokens
     source ~/.tokens

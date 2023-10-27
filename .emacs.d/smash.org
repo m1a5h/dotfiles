@@ -483,8 +483,15 @@ Smashing config
   #+end_src
 * Validate HTML
   #+begin_src emacs-lisp
-  (use-package validate-html
-    :ensure t)
+    (use-package validate-html
+      :ensure t
+      :config
+      (defun validate-html-on-save()
+	(when (and (stringp buffer-file-name)
+		 (string= (file-name-extension buffer-file-name) "html"))
+	    (validate-html)))
+
+	:hook (before-save . validate-html-on-save))
   #+end_src
 * Python
 ** Elpy

@@ -534,6 +534,16 @@ Smashing config
        (setq exec-path (append exec-path '("~/miniconda3/bin")))
        (setenv "PATH" (concat "~/miniconda3/bin:" (getenv "PATH"))))
    #+end_src
+** Blacken
+   #+begin_src emacs-lisp
+     (use-package blacken
+       :ensure t
+       :config
+       (defun blacken-on-save ()
+	 (when (eq major-mode 'python-mode)
+	   (blacken-buffer)))
+       :hook (before-save . blacken-on-save))
+   #+end_src
 ** Pytest
    #+begin_src emacs-lisp
      (use-package python-pytest

@@ -36,8 +36,7 @@ Smashing config
   #+begin_src emacs-lisp
     (use-package expand-region
       :ensure t
-      :config
-      (global-set-key (kbd "C-=") 'er/expand-region))
+      :bind ("C-=" . 'er/expand-region))
   #+end_src
 * Undo tree
   #+BEGIN_SRC emacs-lisp

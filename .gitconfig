@@ -10,7 +10,7 @@ lg = !"git lg1"
 [credential]
 	helper = cache --timeout=7200
 [core]
-	editor = emacs
+	editor = emacsclient -a vi
 [pull]
 	ff = only
 [url "git@github.com:"]

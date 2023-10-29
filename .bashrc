@@ -180,7 +180,7 @@ if [ -f '/home/smash/google-cloud-sdk/path.bash.inc' ]; then . '/home/smash/goog
 if [ -f '/home/smash/google-cloud-sdk/completion.bash.inc' ]; then . '/home/smash/google-cloud-sdk/completion.bash.inc'; fi
 
 # Set EDITOR and VISUAL variables to Emacs if it is installed and otherwise whatever vi is aliased to
-[[ $(which emacs) ]] && export EDITOR=emacs VISUAL=emacs || export EDITOR=${BASH_ALIASES[vi]} VISUAL=${BASH_ALIASES[vi]}
+[[ $(which emacsclient) ]] && export EDITOR="emacsclient -a vi" VISUAL="emacsclient -a vi" || export EDITOR=${BASH_ALIASES[vi]} VISUAL=${BASH_ALIASES[vi]}
 
 # Symbolic link ~/winhome to %USERPROFILE% (C:\Users\<username>) if in WSL
 [[ ! -L $HOME/winhome && $(uname -r) =~ "WSL" ]] && ln -s /mnt/c/Users/$(whoami) $HOME/winhome

@@ -162,6 +162,9 @@ Smashing config
        (delete-other-windows)
        (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
 	 (org-capture)))
+
+     (with-eval-after-load 'org
+       (define-key org-mode-map (kbd "C-'") nil))
    #+END_SRC
 ** Org GCal
    #+BEGIN_SRC emacs-lisp

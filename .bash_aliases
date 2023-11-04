@@ -1,7 +1,5 @@
-alias emacs='emacs -nw' # keep emacs in the terminal window
 [[ $(command -v nvim) ]] && alias vi='nvim' || alias vi='vim'
 [[ $(command -v nvim) ]] && alias vim='nvim'
-alias drjava='java -jar ~/bin/drjava-stable-20130901-r5756.jar' # if it's on
 alias top='htop' # nicer top
 alias octave='octave --no-gui' # start GNU Octave REPL on command line
 alias dmesg='dmesg | tail --follow' # see what's happening
@@ -21,7 +19,7 @@ alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empt
 source /etc/os-release
 if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
 	alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
-	function get() { sudo snap install $1 --$2 || sudo apt install --no-install-recommends $1; }
+	function get() { sudo snap install $1 --candidate || sudo apt install --no-install-recommends $1 }
 	alias hld='sudo apt-mark hold'
 	alias sar='sudo apt remove'
 	alias unhld='sudo apt-mark unhold'
@@ -39,7 +37,6 @@ fi
 alias pipup="pip list --format=json --outdated | jq -r '.[] | .name+\"==\"+.latest_version' | xargs pip install -U --upgrade"
 
 # Terraform and Ansible
-alias ans=ansible
 alias tf=terraform
 
 # remote access the Pi

@@ -19,7 +19,14 @@ alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empt
 source /etc/os-release
 if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
 	alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
-	function get() { sudo snap install $1 --candidate || sudo apt install --no-install-recommends $1 }
+	function get {
+	    if [[ -n $(which snap) ]]; then
+		if sudo snap install "$1" --candidate; then
+		    return 0
+		fi
+	    fi
+		sudo apt install --no-install-recommends "$1"
+	}
 	alias hld='sudo apt-mark hold'
 	alias sar='sudo apt remove'
 	alias unhld='sudo apt-mark unhold'
@@ -28,6 +35,7 @@ if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
 	alias apts='aptitude search'
 	alias rget='sudo apt install --reinstall --no-install-recommends'
 fi
+
 if [[ "$ID_LIKE" =~ "rhel" ]]; then
 	alias up2='sudo dnf update && sudo dnf clean all'
 	alias get='sudo dnf install'

@@ -32,7 +32,7 @@ if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
 	alias unhld='sudo apt-mark unhold'
 	alias sauce='sudo apt update && sudo apt dist-upgrade && sudo apt-get autoremove'
 	alias sai='sudo apt install'
-	alias apts='aptitude search'
+	alias apts='apt search'
 	alias rget='sudo apt install --reinstall --no-install-recommends'
 fi
 

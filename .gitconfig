@@ -22,9 +22,5 @@ lg = !"git lg1"
 [gpg]
 	program = gpg
 	homedir = /home/smash/.gnupg
-[ssh "gpg"]
-	program = gpg
-[gpg "ssh"]
-	allowedSignersFile = /home/smash/.ssh/id_ed25519.pub
 [include]
 	path = .gitconfig.local

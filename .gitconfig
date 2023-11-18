@@ -17,3 +17,14 @@ lg = !"git lg1"
 	insteadOf = https://github.com/
 [init]
 	defaultBranch = master
+[commit]
+	gpgSign = true
+[gpg]
+	program = gpg
+	homedir = /home/smash/.gnupg
+[ssh "gpg"]
+	program = gpg
+[gpg "ssh"]
+	allowedSignersFile = /home/smash/.ssh/id_ed25519.pub
+[include]
+	path = .gitconfig.local

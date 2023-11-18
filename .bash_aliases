@@ -1,6 +1,7 @@
 [[ $(command -v nvim) ]] && alias vi='nvim' || alias vi='vim'
 [[ $(command -v nvim) ]] && alias vim='nvim'
-alias top='htop' # nicer top
+[[ $(which htop) ]] && alias top='htop' # nicer top
+[[ $(which btop) ]] && alias top='btop' # even nicer top
 alias octave='octave --no-gui' # start GNU Octave REPL on command line
 alias dmesg='dmesg | tail --follow' # see what's happening
 alias rx='pkill X' # restart X

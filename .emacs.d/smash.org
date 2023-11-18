@@ -185,10 +185,10 @@ Smashing config
 ** Org reveal
    #+BEGIN_SRC emacs-lisp
      (use-package ox-reveal
-       :ensure ox-reveal)
-
-     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
-     (setq org-reveal-mathjax t)
+       :ensure ox-reveal
+       :config
+       (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+       (setq org-reveal-mathjax t))
 
      (use-package htmlize
        :ensure t)

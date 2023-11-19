@@ -4,16 +4,23 @@ Smashing config
 
 * Interface tweaks
   #+BEGIN_SRC emacs-lisp
-     (setq inhibit-startup-message t)
-     (menu-bar-mode -1)
-     (tool-bar-mode -1)
-     (scroll-bar-mode -1)
-     (fset 'yes-or-no-p 'y-or-n-p)
-     (global-set-key (kbd "<f5>") 'revert-buffer)
-     (setq split-width-threshold 1)
-     (global-hl-line-mode t)
-     (setenv "PATH" (concat "~/.local/bin:" (getenv "PATH")))
-     (server-start)
+    (setq inhibit-startup-message t)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)
+    (fset 'yes-or-no-p 'y-or-n-p)
+    (global-set-key (kbd "<f5>") 'revert-buffer)
+    (setq split-width-threshold 1)
+    (global-hl-line-mode t)
+    (setenv "PATH" (concat "~/.local/bin:" (getenv "PATH")))
+  #+END_SRC
+* Emacs as server
+  #+BEGIN_SRC emacs-lisp
+    (use-package server
+      :ensure t
+      :config
+      (unless (server-running-p)
+	(server-start)))
   #+END_SRC
 * Disable mouse
   #+BEGIN_SRC emacs-lisp
@@ -111,6 +118,12 @@ Smashing config
 	 ((t (:inherit ace-jump-face-foreground :height 3.0))))))
   #+END_SRC
 * Org mode
+** Org exporting
+   #+begin_src emacs-lisp
+     (setq org-html-doctype "html5")
+     (setq org-html-preamble nil)
+     (setq org-html-postamble nil)
+   #+end_src
 ** Org bullets
    #+BEGIN_SRC emacs-lisp
     (use-package org-bullets

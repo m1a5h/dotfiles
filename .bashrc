@@ -8,8 +8,12 @@
 
 # Cow says a quote as you open the terminal
 export PATH=$PATH:/usr/games
-if [[ -x /usr/games/fortune || -x /usr/bin/fortune ]]; then
+if [[ -x /usr/games/fortune ]]; then
     fortune -a | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
+fi
+
+if [[ -x /usr/bin/fortune ]]; then
+    fortune -a | cowsay -f $(ls /usr/share/cowsay/ | shuf -n1)
 fi
 
 # If not running interactively, don't do anything
@@ -199,4 +203,5 @@ if [[ -f $HOME/.tokens.gpg ]]; then
     cat ~/.tokens | cut -d"=" -f1
     rm ~/.tokens
 fi
+
 . "$HOME/.cargo/env"

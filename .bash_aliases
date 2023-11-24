@@ -1,7 +1,7 @@
 [[ $(command -v nvim) ]] && alias vi='nvim' || alias vi='vim'
 [[ $(command -v nvim) ]] && alias vim='nvim'
-[[ $(which htop) ]] && alias top='htop' # nicer top
-[[ $(which btop) ]] && alias top='btop' # even nicer top
+[[ $(command -v htop) ]] && alias top='htop' # nicer top
+[[ $(command -v btop) ]] && alias top='btop' # even nicer top
 alias octave='octave --no-gui' # start GNU Octave REPL on command line
 alias dmesg='dmesg | tail --follow' # see what's happening
 alias rx='pkill X' # restart X
@@ -21,7 +21,7 @@ source /etc/os-release
 if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
 	alias up2='[[ $(which snap) ]] && sudo snap refresh ; sudo apt update && sudo apt dist-upgrade --no-install-recommends && sudo apt-get autoremove'
 	function get {
-	    if [[ -n $(which snap) ]]; then
+	    if [[ -n $(command -v snap) ]]; then
 		if sudo snap install "$1" --candidate; then
 		    return 0
 		fi

@@ -22,7 +22,7 @@ if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
     if [[ $(command -v nala) ]]; then
 	alias up2='[[ $(command -v snap) ]] && sudo snap refresh ; sudo nala update && sudo nala upgrade --no-install-recommends && sudo nala autoremove'
 	function get {
-	    if [[ -n $(c0mmand -v snap) ]]; then
+	    if [[ -n $(command -v snap) ]]; then
 		if sudo snap install "$1" --candidate; then
 		    return 0
 		fi

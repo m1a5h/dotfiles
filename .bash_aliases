@@ -20,7 +20,7 @@ alias t='python ~/bin/t/t.py --task-dir ~/tasks --list todo.txt --delete-if-empt
 source /etc/os-release
 if [[ "$ID_LIKE" = "debian" || "$ID" = "debian" ]]; then
     if [[ $(command -v nala) ]]; then
-	alias up2='[[ $(command -v snap) ]] && sudo snap refresh ; sudo nala update && sudo nala upgrade --no-install-recommends && sudo nala autoremove'
+	alias up2='[[ $(command -v snap) ]] && sudo snap refresh ; sudo nala upgrade'
 	function get {
 	    if [[ -n $(command -v snap) ]]; then
 		if sudo snap install "$1" --candidate; then

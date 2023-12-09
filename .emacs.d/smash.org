@@ -13,6 +13,7 @@ Smashing config
     (setq split-width-threshold 1)
     (global-hl-line-mode t)
     (setenv "PATH" (concat "~/.local/bin:" (getenv "PATH")))
+    (setq default-directory "~")
   #+END_SRC
 * Emacs as server
   #+BEGIN_SRC emacs-lisp

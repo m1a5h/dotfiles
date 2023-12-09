@@ -209,3 +209,7 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# set PATH and completion for AWS if aws & aws_completer in ~/.awscliv2/binaries
+[[ -x ~/.awscliv2/binaries/aws ]] && PATH=$PATH:~/.awscliv2/binaries
+[[ $(command -v aws_completer) ]] && complete -C "$(command -v aws_completer)" aws

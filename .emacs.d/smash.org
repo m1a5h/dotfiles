@@ -94,6 +94,11 @@ Smashing config
 
       (advice-add 'file-acl :around 'fp/ignore-wsl-acls))
   #+end_src 
+* AutoHotKey
+  #+begin_src emacs-lisp
+    (use-package ahk-mode
+      :ensure t)
+  #+end_src
 * Try
   #+BEGIN_SRC emacs-lisp
     (use-package try

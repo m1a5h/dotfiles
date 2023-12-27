@@ -1,6 +1,6 @@
 {
     "createdBy": "Redirector v3.5.3",
-    "createdAt": "2021-02-12T21:10:32.049Z",
+    "createdAt": "2023-12-27T13:17:09.384Z",
     "redirects": [
         {
             "description": "Codeskulptor Py3",
@@ -22,12 +22,12 @@
         {
             "description": "Amazon Smile",
             "exampleUrl": "https://www.amazon.com/Chemistry-Life-Penguin-Press-Science-ebook/dp/B002RI9EP0/ref=sr_1_1?dchild=1&keywords=steven+rose+chemistry&qid=1613080405&sr=8-1",
-            "exampleResult": "https://smile.amazon.co.uk/Chemistry-Life-Penguin-Press-Science-ebook/dp/B002RI9EP0/ref=sr_1_1?dchild=1&keywords=steven+rose+chemistry&qid=1613080405&sr=8-1",
+            "exampleResult": "https://amazon.co.uk/Chemistry-Life-Penguin-Press-Science-ebook/dp/B002RI9EP0/ref=sr_1_1?dchild=1&keywords=steven+rose+chemistry&qid=1613080405&sr=8-1",
             "error": null,
             "includePattern": "https?://(www.)?amazon.(.[^/]*)/(.*)",
             "excludePattern": "",
-            "patternDesc": "Moving Amazon to Smile",
-            "redirectUrl": "https://smile.amazon.co.uk/$3",
+            "patternDesc": "Moving Amazon to UK site",
+            "redirectUrl": "https://amazon.co.uk/$3",
             "patternType": "R",
             "processMatches": "noProcessing",
             "disabled": false,

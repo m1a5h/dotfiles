@@ -1,6 +1,6 @@
 {
     "createdBy": "Redirector v3.5.3",
-    "createdAt": "2023-12-27T13:17:09.384Z",
+    "createdAt": "2023-12-27T13:19:13.698Z",
     "redirects": [
         {
             "description": "Codeskulptor Py3",
@@ -28,6 +28,23 @@
             "excludePattern": "",
             "patternDesc": "Moving Amazon to UK site",
             "redirectUrl": "https://amazon.co.uk/$3",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "NSFW Youtube",
+            "exampleUrl": "https://www.youtube.com/watch?v=griEqmUTsHI",
+            "exampleResult": "https://nsfwyoutube.com/watch?v=griEqmUTsHI",
+            "error": null,
+            "includePattern": "(?:https?://)?(?:www\\.)?(?:youtube\\.com/watch\\?v=|youtu\\.be/)([a-zA-Z0-9_-]{11})",
+            "excludePattern": "",
+            "patternDesc": "Redirects from playing on YouTube to NSWYouTube",
+            "redirectUrl": "https://nsfwyoutube.com/watch?v=$1",
             "patternType": "R",
             "processMatches": "noProcessing",
             "disabled": false,

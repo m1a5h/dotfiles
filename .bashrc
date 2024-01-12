@@ -7,7 +7,6 @@
 # set -x
 
 # Cow says a quote as you open the terminal
-export PATH=$PATH:/usr/games
 if [[ -x /usr/games/fortune ]]; then
     fortune -a | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
 fi
@@ -132,20 +131,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# Add to PATH for personal script ~/bin
-[ -x $HOME/bin ] && PATH=$HOME/bin:$PATH
-
-# Add to PATH for snaps
-PATH=/snap/bin:$PATH
+# Add to PATH for personal script ~/bin & ~/.local/bin
+# [ -x $HOME/bin ] && PATH=$HOME/bin:$PATH
+# [ -x $HOME/bin ] && PATH=$HOME/.local/bin/:$PATH
 
 # for using git
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 alias gitt='export PS1="[\033[01;34m]\W\$(__git_ps1)$ [\033[00m] "'
 
-PATH=$PATH:$HOME/racket/bin # Add RVM to PATH for scripting
-# source ~/perl5/perlbrew/etc/bashrc
-export PATH=~/.local/bin/:$PATH
 export PYTHONSTARTUP=~/.pythonrc
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -153,8 +147,6 @@ export PYTHONSTARTUP=~/.pythonrc
 
 # The next line enables bash completion for gcloud.
 # source ~/learning/google-cloud-sdk/completion.bash.inc
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # PERL_MB_OPT="--install_base \"~/perl5\""; export PERL_MB_OPT;
 # PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;

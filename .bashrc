@@ -190,7 +190,7 @@ unset __conda_setup
 # Use `gpg -c ~/.tokens` to encrypt regenerated tokens
 if [[ -f $HOME/.tokens.gpg ]]; then
     gpg --quiet -d ~/.tokens.gpg > ~/.tokens
-    source ~/.tokens
+    export $(<~/.tokens)
     echo "Tokens/API keys available as environment variables: "
     cat ~/.tokens | cut -d"=" -f1
     rm ~/.tokens

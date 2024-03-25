@@ -45,8 +45,7 @@ filetype plugin indent on
 set number relativenumber	
 syntax enable
 set background=dark
-" let g:solarized_termcolors = 256
-colorscheme delek
+let g:solarized_termcolors = 256
 highlight Comment cterm=bold
 
 " Python3

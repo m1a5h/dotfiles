@@ -188,10 +188,10 @@ if [[ -f $HOME/.tokens.gpg ]]; then
     gpg --quiet -d ~/.tokens.gpg > ~/.tokens
     export $(<~/.tokens)
     echo "Tokens/API keys available as environment variables: "
-    cat ~/.tokens | cut -d"=" -f1
+    cut -d"=" -f1 < ~/.tokens
     rm ~/.tokens
 fi
-
+1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

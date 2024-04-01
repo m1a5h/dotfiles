@@ -131,10 +131,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# Add to PATH for personal script ~/bin & ~/.local/bin
-# [ -x $HOME/bin ] && PATH=$HOME/bin:$PATH
-# [ -x $HOME/bin ] && PATH=$HOME/.local/bin/:$PATH
-
 # for using git
 source ~/.git-completion.bash
 source ~/.git-prompt.sh

@@ -1,6 +1,6 @@
 {
     "createdBy": "Redirector v3.5.3",
-    "createdAt": "2023-12-30T19:34:05.833Z",
+    "createdAt": "2024-04-06T10:25:09.318Z",
     "redirects": [
         {
             "description": "Codeskulptor Py3",
@@ -45,6 +45,23 @@
             "excludePattern": "",
             "patternDesc": "Redirects from playing on YouTube to NSWYouTube",
             "redirectUrl": "https://nsfwyoutube.com/watch?v=$1",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": true,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Reddit new posts",
+            "exampleUrl": "https://www.reddit.com/r/emacs/",
+            "exampleResult": "https://reddit.com/r/emacs/new",
+            "error": null,
+            "includePattern": "https:\\/\\/(?:www.)?reddit.com\\/r\\/([a-zA-Z0-9]+)\\/?",
+            "excludePattern": "https:\\/\\/(?:www.)?reddit.com\\/r\\/([a-zA-Z0-9]+)\\/([a-zA-Z0-9]+)",
+            "patternDesc": "Redirect from Reddit community to its new posts",
+            "redirectUrl": "https://reddit.com/r/$1/new",
             "patternType": "R",
             "processMatches": "noProcessing",
             "disabled": false,

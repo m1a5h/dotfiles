@@ -463,6 +463,20 @@ Smashing config
       :init
       (yas-global-mode 1))
   #+END_SRC
+* Lisps
+** Slime
+   #+begin_src emacs-lisp
+     (use-package slime
+       :ensure t
+       :config
+       (setq inferior-lisp-program "clisp"))
+   #+end_src
+** Lisp Mode
+   #+begin_src emacs-lisp
+     (use-package lisp-mode
+       :ensure t
+       :mode ("\\.cl\\'" . lisp-mode))
+   #+end_src
 * Markdown
   #+begin_src emacs-lisp
     (use-package markdown-mode

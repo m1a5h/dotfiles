@@ -10,6 +10,7 @@ Smashing config
     (scroll-bar-mode -1)
     (fset 'yes-or-no-p 'y-or-n-p)
     (global-set-key (kbd "<f5>") 'revert-buffer)
+    (global-set-key (kbd "<XF86Reload>") 'revert-buffer)
     (setq split-width-threshold 1)
     (global-hl-line-mode t)
     (setenv "PATH" (concat "~/.local/bin:" (getenv "PATH")))

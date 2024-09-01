@@ -474,7 +474,6 @@ Smashing config
 ** Lisp Mode
    #+begin_src emacs-lisp
      (use-package lisp-mode
-       :ensure t
        :mode ("\\.cl\\'" . lisp-mode))
    #+end_src
 * Markdown

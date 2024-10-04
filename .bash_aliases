@@ -155,3 +155,4 @@ function fin () {
 # Save startx log into file in home directory
 alias startx='startx > $HOME/startx.log 2>&1'
 
+alias sbcl="rlwrap sbcl"

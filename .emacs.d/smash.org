@@ -469,8 +469,18 @@ Smashing config
    #+begin_src emacs-lisp
      (use-package slime
        :ensure t
+       :commands (me/slime-clisp me/slime-sbcl)
        :config
-       (setq inferior-lisp-program "clisp"))
+       (defun me/slime-clisp ()
+	 "Set inferior Lisp to Clisp and run Slime."
+	 (interactive)
+	 (setq inferior-lisp-program "clisp")
+		(slime))
+       (defun me/slime-sbcl ()
+	 "Set inferior Lisp to SBCL and run Slime."
+	 (interactive)
+	 (setq inferior-lisp-program "sbcl")
+	 (slime)))
    #+end_src
 ** Lisp Mode
    #+begin_src emacs-lisp

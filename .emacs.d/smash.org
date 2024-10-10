@@ -471,16 +471,15 @@ Smashing config
        :ensure t
        :commands (me/slime-clisp me/slime-sbcl)
        :config
-       (defun me/slime-clisp ()
-	 "Set inferior Lisp to Clisp and run Slime."
-	 (interactive)
-	 (setq inferior-lisp-program "clisp")
-		(slime))
-       (defun me/slime-sbcl ()
-	 "Set inferior Lisp to SBCL and run Slime."
-	 (interactive)
-	 (setq inferior-lisp-program "sbcl")
-	 (slime))
+       (defmacro me/define-slime-lisp-function (lisp)
+	 "Create function to set inferior Lisp to LISP and run Slime with it."
+	 `(defun ,(intern (format "me/slime-%s" lisp)) ()
+	    ,(format "Set inferior Lisp as %s and run Slime with it." lisp)
+	    (interactive)
+	    (setq inferior-lisp-program ,lisp)
+	    (slime)))
+       (me/define-slime-lisp-function "sbcl")
+       (me/define-slime-lisp-function "clisp")
        :bind (:map lisp-mode-map
 		   ("C-c M-l" . me/slime-clisp)
 		   ("C-c M-s" . me/slime-sbcl)))

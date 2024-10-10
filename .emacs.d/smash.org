@@ -473,11 +473,12 @@ Smashing config
        :config
        (defmacro me/define-slime-lisp-function (lisp)
 	 "Create function to set inferior Lisp to LISP and run Slime with it."
-	 `(defun ,(intern (format "me/slime-%s" lisp)) ()
-	    ,(format "Set inferior Lisp as %s and run Slime with it." lisp)
-	    (interactive)
-	    (setq inferior-lisp-program ,lisp)
-	    (slime)))
+	 (let ((func-name (intern (format "me/slime-%s" lisp))))
+	   `(defun ,func-name ()
+	      ,(format "Set inferior Lisp as %s and run Slime with it." lisp)
+	      (interactive)
+	      (setq inferior-lisp-program ,lisp)
+	      (slime))))
        (me/define-slime-lisp-function "sbcl")
        (me/define-slime-lisp-function "clisp")
        :bind (:map lisp-mode-map

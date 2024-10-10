@@ -480,7 +480,10 @@ Smashing config
 	 "Set inferior Lisp to SBCL and run Slime."
 	 (interactive)
 	 (setq inferior-lisp-program "sbcl")
-	 (slime)))
+	 (slime))
+       :bind (:map lisp-mode-map
+		   ("C-c M-l" . me/slime-clisp)
+		   ("C-c M-s" . me/slime-sbcl)))
    #+end_src
 ** Lisp Mode
    #+begin_src emacs-lisp

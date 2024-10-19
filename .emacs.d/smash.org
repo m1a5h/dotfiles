@@ -484,7 +484,7 @@ Smashing config
        :bind (:map lisp-mode-map
 		   ("C-c M-l" . me/slime-clisp)
 		   ("C-c M-s" . me/slime-sbcl))
-       (:map slime-repl-mode-map
+       (:map slime-mode-map
 	     ("C-c M-r" . slime-restart-inferior-lisp)))
    #+end_src
 ** Lisp Mode

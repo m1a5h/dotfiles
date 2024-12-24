@@ -138,39 +138,6 @@ alias gitt='export PS1="[\033[01;34m]\W\$(__git_ps1)$ [\033[00m] "'
 
 export PYTHONSTARTUP=~/.pythonrc
 
-# The next line updates PATH for the Google Cloud SDK.
-# source ~/learning/google-cloud-sdk/path.bash.inc
-
-# The next line enables bash completion for gcloud.
-# source ~/learning/google-cloud-sdk/completion.bash.inc
-
-# PERL_MB_OPT="--install_base \"~/perl5\""; export PERL_MB_OPT;
-# PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;
-# set +x
-# exec 2>&3 3>&-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup=$("$HOME/miniconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-# The next line updates PATH for the Google Cloud SDK.
-[[ -f "$HOME/google-cloud-sdk/path.bash.inc" ]] && . "$HOME/google-cloud-sdk/path.bash.inc"
-
-# The next line enables shell command completion for gcloud.
-[[ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]] && . "$HOME/google-cloud-sdk/completion.bash.inc"
-
 # Set EDITOR and VISUAL variables to Emacs if it is installed and otherwise whatever vi is aliased to
 [[ $(command -v emacsclient) ]] && export EDITOR="emacsclient -a vi" VISUAL="emacsclient -a vi" || export EDITOR=${BASH_ALIASES[vi]} VISUAL=${BASH_ALIASES[vi]}
 

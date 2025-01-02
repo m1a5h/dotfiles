@@ -16,32 +16,25 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+# Locations for PATH
+locations=(
+    "$HOME/bin"
+    "$HOME/.local/bin"
+    "$HOME/miniconda3/bin"
+    "$HOME/conda3/bin"
+    "$HOME/rvm/bin"
+    "$HOME/rvm/scripts/rvm"
+    "$HOME/.awscliv2/binaries"
+)
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+# Add locations to PATH
+for location in "${locations[@]}"; do
+	if [[ -d $location && ! $PATH =~ (^|:)$location(:|$) ]]; then
+		PATH="$location:$PATH"
+	fi
+done
 
 # Load Cargo for Rust if it existss
 if [ -d "$HOME/.cargo" ] ; then
      . "$HOME/.cargo/env"
-fi
-     
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-if [ -d "$HOME/rvm/bin" ] ; then
-    PATH="$PATH:$HOME/rvm/bin"
-fi
-
-# Load RVM into a shell session *as a function*
-if [ -s "$HOME/rvm/scripts/rvm" ] ; then
-    . "$HOME/rvm/scripts/rvm"
-fi
-
-# Add AWS CLI binaries to PATH if in aws CLI is in home
-if [ -x ~/.awscliv2/binaries/aws ] ; then
-    PATH=$PATH:~/.awscliv2/binaries
 fi

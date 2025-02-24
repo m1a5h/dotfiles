@@ -503,6 +503,11 @@ Smashing config
      (use-package cider
        :ensure t)
    #+end_src
+* SML
+  #+begin_src emacs-lisp
+    (use-package sml-mode
+      :ensure t)
+  #+end_src
 * Markdown
   #+begin_src emacs-lisp
     (use-package markdown-mode

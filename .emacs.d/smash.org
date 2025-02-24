@@ -508,6 +508,20 @@ Smashing config
     (use-package sml-mode
       :ensure t)
   #+end_src
+* OCaml
+** OCaml Format
+  #+begin_src emacs-lisp
+    (use-package ocamlformat
+      :ensure t
+      :custom (ocamlformat-enable 'enable-outside-detected-project)
+      :hook (before-save . ocamlformat-before-save))
+  #+end_src
+** OPAM User Setup
+  #+begin_src emacs-lisp
+    (use-package opam-user-setup
+      :load-path "~/.emacs.d/"
+      :ensure nil)
+  #+end_src
 * Markdown
   #+begin_src emacs-lisp
     (use-package markdown-mode

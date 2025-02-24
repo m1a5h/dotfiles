@@ -156,3 +156,4 @@ function fin () {
 alias startx='startx > $HOME/startx.log 2>&1'
 
 alias sbcl="rlwrap sbcl"
+alias sml="rlwrap sml"

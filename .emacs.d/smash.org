@@ -519,7 +519,7 @@ Smashing config
 ** OPAM User Setup
   #+begin_src emacs-lisp
     (use-package opam-user-setup
-      :load-path "~/.emacs.d/"
+      :load-path "~/.emacs.d/opam"
       :ensure nil)
   #+end_src
 * Markdown

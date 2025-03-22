@@ -25,6 +25,7 @@ locations=(
     "$HOME/rvm/bin"
     "$HOME/rvm/scripts/rvm"
     "$HOME/.awscliv2/binaries"
+    "$HOME/racket/bin"
 )
 
 # Add locations to PATH

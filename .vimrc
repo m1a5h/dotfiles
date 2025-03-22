@@ -61,3 +61,10 @@ inoremap jk <Esc>
  
 " Use template when opening new HTML file
 autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel
+
+" Configuration for OCaml OPAM
+try
+  source ~/.vim/opam.vim
+catch
+  " Configuration file for OPAM does not exist
+endtry

@@ -20,6 +20,7 @@ fi
 locations=(
     "$HOME/bin"
     "$HOME/.local/bin"
+    "$HOME/smlroot/bin"
     "$HOME/miniconda3/bin"
     "$HOME/conda3/bin"
     "$HOME/rvm/bin"

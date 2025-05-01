@@ -10,18 +10,11 @@ Smashing config
     (scroll-bar-mode -1)
     (fset 'yes-or-no-p 'y-or-n-p)
     (global-set-key (kbd "<f5>") 'revert-buffer)
-    (global-set-key (kbd "<XF86Reload>") 'revert-buffer)
     (setq split-width-threshold 1)
     (global-hl-line-mode t)
+    (setenv "PATH" (concat "~/.local/bin:" (getenv "PATH")))
     (setq default-directory "~")
   #+END_SRC
-* Exec PATH from Shell
-  #+begin_src emacs-lisp
-    (use-package exec-path-from-shell
-      :ensure t
-      :config
-      (exec-path-from-shell-initialize))
-  #+end_src
 * Emacs as server
   #+BEGIN_SRC emacs-lisp
     (use-package server
@@ -61,7 +54,7 @@ Smashing config
       :init
       (global-undo-tree-mode)
       :config
-    (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backupfiles"))))
+      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backupfiles"))))
   #+END_SRC
 * Projectile
   #+begin_src emacs-lisp
@@ -83,14 +76,16 @@ Smashing config
       (setq dashboard-set-file-icons t)
       (setq dashboard-set-heading-icons t)
       (if (eq system-type 'windows-nt)
-	  (setq dashboard-startup-banner "C:/Program Files/emacs/share/icons/hicolor/128x128/apps/emacs.png"))
-      (if (file-executable-p "/snap/bin/emacs")
-	  (setq dashboard-startup-banner "/snap/emacs/current/usr/share/icons/hicolor/128x128/apps/emacs.png"))
-      (if (file-executable-p "/usr/bin/emacs")
-	  (setq dashboard-startup-banner "/usr/share/icons/hicolor/128x128/apps/emacs.png"))
+	  (setq dashboard-startup-banner "C:/Program Files/emacs/share/icons/hicolor/128x128/apps/emacs.png")
+	(setq dashboard-startup-banner "/usr/share/icons/hicolor/128x128/apps/emacs.png"))
       :config
       (dashboard-setup-startup-hook)
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
+  #+end_src
+* PDFs
+  #+begin_src emacs-lisp
+    (use-package pdf-tools
+      :ensure t)
   #+end_src
 * Fix WSL file ACL
   #+begin_src emacs-lisp
@@ -142,10 +137,10 @@ Smashing config
    #+end_src
 ** Org bullets
    #+BEGIN_SRC emacs-lisp
-    (use-package org-bullets
-      :ensure t
-      :config
-      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+     (use-package org-bullets
+       :ensure t
+       :config
+       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
    #+END_SRC
 ** Org capture
    #+BEGIN_SRC emacs-lisp
@@ -231,7 +226,7 @@ Smashing config
 		  ("Q" . bjm/elfeed-save-db-and-bury)
 		  ("m" . elfeed-toggle-star)
 		  ("M" . elfeed-toggle-star)))
-		  
+
     (use-package elfeed-goodies
       :ensure t
       :config
@@ -321,10 +316,10 @@ Smashing config
   #+END_SRC
 * Ido mode
   #+BEGIN_SRC emacs-lisp
-  ;; (setq ido-enable-flex-matching t)
-  ;; (setq ido-everywhere t)
-  ;; (ido-mode 1)
-  ;; #(defalias 'list-buffers 'ibuffer)
+    ;; (setq ido-enable-flex-matching t)
+    ;; (setq ido-everywhere t)
+    ;; (ido-mode 1)
+    ;; #(defalias 'list-buffers 'ibuffer)
   #+END_SRC
 * Swiper search
   #+BEGIN_SRC emacs-lisp
@@ -368,12 +363,12 @@ Smashing config
   #+END_SRC
 * Auto-complete
   #+BEGIN_SRC emacs-lisp
-  (use-package auto-complete
-  :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)))
+    (use-package auto-complete
+      :ensure t
+      :init
+      (progn
+	(ac-config-default)
+	(global-auto-complete-mode t)))
   #+END_SRC
 * Avy movement
   #+BEGIN_SRC emacs-lisp
@@ -384,16 +379,16 @@ Smashing config
 * Theming
 ** Doom emacs
    #+BEGIN_SRC emacs-lisp
-    (use-package doom-themes
-      :ensure t
-      :config (load-theme 'doom-acario-dark t))
+     (use-package doom-themes
+       :ensure t
+       :config (load-theme 'doom-acario-dark t))
 
-    (use-package doom-modeline
-      :ensure t
-      :hook (after-init . doom-modeline-mode)
-      :init
-      (progn
-	(setq doom-modeline-icon t)))
+     (use-package doom-modeline
+       :ensure t
+       :hook (after-init . doom-modeline-mode)
+       :init
+       (progn
+	 (setq doom-modeline-icon t)))
    #+END_SRC
 ** Icons
    #+BEGIN_SRC emacs-lisp
@@ -432,11 +427,11 @@ Smashing config
   #+end_src
 * Eshell highlighting
   #+BEGIN_SRC emacs-lisp
-     (use-package eshell-syntax-highlighting
-       :after eshell
-       :ensure t
-       :config
-       (eshell-syntax-highlighting-global-mode +1))
+    (use-package eshell-syntax-highlighting
+      :after eshell
+      :ensure t
+      :config
+      (eshell-syntax-highlighting-global-mode +1))
   #+END_SRC
 * Magit
   #+BEGIN_SRC emacs-lisp
@@ -463,6 +458,33 @@ Smashing config
        :ensure t)
      (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
    #+END_SRC
+* SML
+  #+begin_src emacs-lisp
+    (use-package sml-mode
+      :ensure t)
+  #+end_src
+* Lisps
+** Slime
+   #+begin_src emacs-lisp
+     (use-package slime
+       :ensure t
+       :config
+       (setq inferior-lisp-program "sbcl"))
+   #+end_src
+** Lisp Mode
+   #+begin_src emacs-lisp
+     (use-package lisp-mode
+       :ensure t
+       :mode ("\\.cl\\'" . lisp-mode))
+   #+end_src
+** Scheme
+   #+begin_src emacs-lisp
+     (use-package geiser-mit
+       :ensure t
+       :config
+       (((regexp "\\.scm$") guile)
+	((regexp "\\.rkt$") racket)))
+   #+end_src
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
@@ -470,81 +492,34 @@ Smashing config
       :init
       (yas-global-mode 1))
   #+END_SRC
-* Lisps
-** Slime
-   #+begin_src emacs-lisp
-     (use-package slime
-       :ensure t
-       :commands (me/slime-clisp me/slime-sbcl)
-       :config
-       (defmacro me/define-slime-lisp-function (lisp)
-	 "Create function to set inferior Lisp to LISP and run Slime with it."
-	 (let ((func-name (intern (format "me/slime-%s" lisp))))
-	   `(defun ,func-name ()
-	      ,(format "Set inferior Lisp as %s and run Slime with it." lisp)
-	      (interactive)
-	      (setq inferior-lisp-program ,lisp)
-	      (slime))))
-       (me/define-slime-lisp-function "sbcl")
-       (me/define-slime-lisp-function "clisp")
-       :bind (:map lisp-mode-map
-		   ("C-c M-l" . me/slime-clisp)
-		   ("C-c M-s" . me/slime-sbcl))
-       (:map slime-mode-map
-	     ("C-c M-r" . slime-restart-inferior-lisp)))
-   #+end_src
-** Lisp Mode
-   #+begin_src emacs-lisp
-     (use-package lisp-mode
-       :mode ("\\.cl\\'" . lisp-mode))
-   #+end_src
-** Clojure
-   #+begin_src emacs-lisp
-     (use-package cider
-       :ensure t)
-   #+end_src
-* SML
-  #+begin_src emacs-lisp
-    (use-package sml-mode
-      :ensure t)
-  #+end_src
-* OCaml
-** OCaml Format
-  #+begin_src emacs-lisp
-    (use-package ocamlformat
-      :ensure t
-      :custom (ocamlformat-enable 'enable-outside-detected-project)
-      :hook (before-save . ocamlformat-before-save))
-  #+end_src
-** OPAM User Setup
-  #+begin_src emacs-lisp
-    (use-package opam-user-setup
-      :load-path "~/.emacs.d/opam"
-      :ensure nil)
-  #+end_src
 * Markdown
   #+begin_src emacs-lisp
     (use-package markdown-mode
-      :ensure t
-      :config
-      (defun as/markdown-add-xhtml-header-and-footer (title)
-	"Wrap XHTML header and footer with given TITLE around current buffer."
-	(goto-char (point-min))
-	(insert "<!DOCTYPE html>\n"
-		"<html>\n"
-		"<head>\n<title>")
-	(insert title)
-	(insert "</title>\n")
-	(insert "<meta charset=\"utf-8\" />\n")
-	(when (> (length markdown-css-paths) 0)
-	  (insert (mapconcat 'markdown-stylesheet-link-string markdown-css-paths "\n")))
-	(insert "\n</head>\n\n"
-		"<body>\n\n")
-	(goto-char (point-max))
-	(insert "\n"
-		"</body>\n"
-		"</html>\n"))
-      (defalias 'markdown-add-xhtml-header-and-footer 'as/markdown-add-xhtml-header-and-footer))
+      :ensure t)
+
+    (eval-after-load "markdown-mode"
+      '(defalias 'markdown-add-xhtml-header-and-footer 'as/markdown-add-xhtml-header-and-footer))
+
+    (defun as/markdown-add-xhtml-header-and-footer (title)
+      "Wrap XHTML header and footer with given TITLE around current buffer."
+      (goto-char (point-min))
+      (insert "<!DOCTYPE html>\n"
+	      "<html>\n"
+	      "<head>\n<title>")
+      (insert title)
+      (insert "</title>\n")
+      (insert "<meta charset=\"utf-8\" />\n")
+      (when (> (length markdown-css-paths) 0)
+	(insert (mapconcat 'markdown-stylesheet-link-string markdown-css-paths "\n")))
+      (insert "\n</head>\n\n"
+	      "<body>\n\n")
+      (goto-char (point-max))
+      (insert "\n"
+	      "</body>\n"
+	      "</html>\n"))
+  #+end_src
+* LaTeX
+  #+begin_src emacs-lisp
   #+end_src
 * Web mode
   #+begin_src emacs-lisp
@@ -570,11 +545,24 @@ Smashing config
       :config
       (defun validate-html-on-save()
 	(when (and (stringp buffer-file-name)
-		 (string= (file-name-extension buffer-file-name) "html"))
-	    (validate-html)))
+		   (string= (file-name-extension buffer-file-name) "html"))
+	  (validate-html)))
 
-	:hook (before-save . validate-html-on-save))
+      :hook (before-save . validate-html-on-save))
   #+end_src
+* JSON
+** JSON Mode
+   #+begin_src emacs-lisp
+     (use-package json-mode
+       :ensure t)
+   #+end_src
+** JSON Flymake
+   #+begin_src emacs-lisp
+     (use-package flymake-json
+       :ensure t
+       :bind (:map json-mode-map
+		   ("C-c v" . 'flymake-json-load)))
+   #+end_src
 * SQL
 ** SQL Indent
    #+begin_src emacs-lisp
@@ -619,7 +607,9 @@ Smashing config
        :hook (python-mode . anaconda-mode)
        :hook (python-mode-hook . anaconda-eldoc-hook)
        :config
-       (setq python-shell-interpreter (expand-file-name "~/miniconda3/bin/python")))
+       (setq python-shell-interpreter (expand-file-name "~/miniconda3/bin/python"))
+       (setq exec-path (append exec-path '("~/miniconda3/bin")))
+       (setenv "PATH" (concat "~/miniconda3/bin:" (getenv "PATH"))))
    #+end_src
 ** Blacken
    #+begin_src emacs-lisp
@@ -647,6 +637,14 @@ Smashing config
        :mode ("\\.js\\'" . js2-mode)
        :hook (js2-mode . js2-imenu-extras-mode))
    #+end_src
+** Prettier JS
+   #+begin_src emacs-lisp
+     (use-package prettier-js
+       :ensure t
+       :hook (js2-mode . prettier-js-mode)
+       :config
+       (setq exec-path (append exec-path '("~/.nvm/versions/node/v16.20.2/bin"))))
+   #+end_src
 * Powershell
   #+BEGIN_SRC emacs-lisp
     (use-package powershell
@@ -660,10 +658,10 @@ Smashing config
   #+end_src
 * Flycheck
   #+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-		 :ensure t
-		 :init
-		 (global-flycheck-mode t))
+    (use-package flycheck
+      :ensure t
+      :init
+      (global-flycheck-mode t))
   #+END_SRC
 * Windows startup
   #+BEGIN_SRC emacs-lisp
